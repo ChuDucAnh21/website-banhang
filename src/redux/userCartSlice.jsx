@@ -123,7 +123,7 @@ const userCartSlice = createSlice({
 })
 export const fetchCart = createAsyncThunk("userCart/fetchCart", async(token,thunkAPI)=>{
      
-    //  console.log("in fetchCart")
+    
      try{
         const dataCurrentUser = await getApiUserCurrent(token)  //Lấy thông tin của user đăng đăng nhập 
         // console.log("fetch dataCurrentUser",dataCurrentUser)

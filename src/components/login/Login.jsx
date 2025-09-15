@@ -24,11 +24,11 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
             try {
                 const dataServer = await loginApiUser({ email, password });
                 showToast("Đăng nhập thành công");
-
+                console.log("dataServer",dataServer)
                 dispatch(
                     authSlice.actions.loginSuccess({
                         accessToken: dataServer.data.accessToken,
-                        dataUser:{ ...dataServer.data.user,"password" : password},
+                        dataUser:{ ...dataServer.data.user,"password" : password , "refreshToken" : dataServer.data.refreshToken},
                         role: dataServer.data.user.role,
                     })
                 );
