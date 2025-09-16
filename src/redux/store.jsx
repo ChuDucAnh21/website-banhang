@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from 'redux-persist';
 import authSlice from "./authSlice";
 import guestCartSlice from "./guestCartSlice";
-import userCartSlice from "./userCartSlice";
+import userCartSlice  from "./userCartSlice";
 import storage from 'redux-persist/lib/storage'; // mặc định dùng localStorage
 
 const persistConfigCart = {

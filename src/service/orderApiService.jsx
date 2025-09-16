@@ -12,7 +12,7 @@ export const getOrderByUserApi= async(token)=>{     //Lấy thông tin mà user 
     return data
 }
 
-export const orderCartApi = async(value,token)=>{
+export const orderCartApi = async(value,token)=>{   //đặt sản phẩm
     const data = apiFetch("/api/order",{
         method:"POST",
         headers:{
@@ -32,6 +32,21 @@ export const orderCartApi = async(value,token)=>{
             }  
         }),
 
+    })
+    return data
+}
+
+export const updateOrderByUserApi = async(value,token)=>{
+    const data = await apiFetch("/api/order/updateOrderByUser",{
+        method :"PUT",
+        headers : {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body:JSON.stringify({
+            "oid" :value.id,
+            "status" : value.status
+        })
     })
     return data
 }

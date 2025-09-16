@@ -10,6 +10,8 @@ import DetailCart from "./pages/public/detailPage/detailCart/DetailCart";
 import OrderPage from "./pages/public/orderPage/OrderPage";
 import HistoryPage from "./pages/user/historyBuy/HistoryBuyPage";
 import ProfilePage from "./pages/user/profilePage/ProfilePage";
+import DashBoardPage from "./pages/admin/dashBoard/DashBoard";
+import CreateProduct from "./pages/admin/createProduct/CreateProduct";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +29,8 @@ export const router = createBrowserRouter([
             {path:ROUTER.PUBLIC.ORDER, element:<OrderPage/>},
             {path:ROUTER.USER.HISTORY, element:<HistoryPage/>},
             {path:ROUTER.USER.PROFILE, element:<ProfilePage/>},
+            {path:ROUTER.ADMIN.DASHBOARD, element:<DashBoardPage/>},
+            {path:ROUTER.ADMIN.CREATEPRODUCT, element:<CreateProduct/>},
         ]
     }
 ])

@@ -13,5 +13,10 @@ export const ROUTER = {
     USER:{
         HISTORY : "/history-buy",
         PROFILE :"/profile"
+    },
+    ADMIN:{
+        DASHBOARD : "/admin/dashboard",
+        CREATEPRODUCT:"/admin/createProduct"
     }
+    
 }

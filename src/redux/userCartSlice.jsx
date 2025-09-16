@@ -1,6 +1,6 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
-import { SelectUser } from "./selector";
-import { useSelector ,useDispatch } from "react-redux";
+// import { SelectUser } from "./selector";
+// import { useSelector ,useDispatch } from "react-redux";
 import { getApiUserCurrent,addToCartUserApi,removeToCartUserApi } from "../service/userApiService";
 import { orderCartApi } from "../service/orderApiService";
 

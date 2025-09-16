@@ -101,20 +101,25 @@ const OrderPage = ()=>{
     }
     
     const handelOrder  = async()=>{
-        if(dataUser.role){
-            try {
-              const dataUserCurrent = await getApiUserCurrent(dataUser.accessToken)
-              await dispatch(orderCartUser({
-                  "value":{...dataUserCurrent.data, note:textNote},
-                  "token":dataUser.accessToken
-              })).unwrap()
-               showToast("Đặt hàng thành công")
-            } catch (error) {
-               showToast("Đặt hàng thất bại","error")
+        if(listProductCart.products.length!==0){
+            if(dataUser.role){
+                try {
+                  const dataUserCurrent = await getApiUserCurrent(dataUser.accessToken)
+                  await dispatch(orderCartUser({
+                      "value":{...dataUserCurrent.data, note:textNote},
+                      "token":dataUser.accessToken
+                  })).unwrap()
+                   showToast("Đặt hàng thành công")
+                } catch (error) {
+                   showToast("Đặt hàng thất bại","error")
+                }
+            }
+            else{
+                showToast("Bạn cần đăng nhập để đặt hàng","error")
             }
         }
         else{
-            showToast("Bạn cần đăng nhập để đặt hàng","error")
+            showToast("Bạn chưa có sản phẩm nào để đặt","error")
         }
 
     }
@@ -209,7 +214,10 @@ const OrderPage = ()=>{
                                 <p className="w-[130px]">Tổng thanh toán :</p>
                                 <p className="font-medium text-blue-600 text-[18px]">{listProductCart.total + 35000}đ</p>
                             </div>
-                            <button onClick={handelOrder} className=" border rounded  w-full md:w-auto hover:opacity-80 p-1 pl-10 pr-10 border-[#ff0000] bg-[#ff0000] text-white mt-9">Hoàn tất đặt hàng</button>
+                            {
+                                 listProductCart.products.length===0
+                            }
+                            <button onClick={handelOrder} className={`${listProductCart.products.length===0 ? "bg-[#f14444] cursor-not-allowed" : "bg-[#ff0000]"} bg-[#ff0000] border rounded  w-full md:w-auto hover:opacity-80 p-1 pl-10 pr-10 border-[#ff0000]  text-white mt-9`}>Hoàn tất đặt hàng</button>
                              <Link to={"/detailCart"}>
                                 <p className="text-blue-600 font-medium mt-8 flex items-center">
                                     <IoMdReturnLeft/>

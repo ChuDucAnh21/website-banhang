@@ -1,35 +1,43 @@
 import { useEffect, useState } from "react";
 import { addToCartUserApi } from "../../../service/userApiService";
-import { getOrderByUserApi } from "../../../service/orderApiService";
+import { getOrderByUserApi, updateOrderByUserApi } from "../../../service/orderApiService";
 import { useSelector } from "react-redux";
 import { SelectUser } from "../../../redux/selector";
-import { useLocation } from "react-router-dom";
-
+import { Await, useLocation } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useToast } from "../../../components/toastMessage/ToastMessage";
 
 
 
 const HistoryPage = ()=>{
+  const {showToast} = useToast()
   const dataUser = useSelector(SelectUser)
   const [dataHistory,setDataHistory] = useState([])
+  const [isLoading,setIsLoading] = useState(true)
   const location = useLocation()
-  // console.log(dataUser)
+  
     useEffect(()=>{
-      // console.log("chay effec")
+      setIsLoading(true)
       const fetchApi = async()=>{
         const res  =await getOrderByUserApi(dataUser.accessToken)
+        console.log("res",res)
         setDataHistory(res.data)
-        //  const dt = await fetch("/api/user/refreshAccessToken", {
-        //   method: "GET",
-        //     "Authorization": `Bearer ${dataUser.userInfor.refreshToken}`,
-        //     // credentials: "include",
-        //   });
-        //   const data = dt.json()
-        //   console.log("refreshAccessToken",data)
+        setIsLoading(false)
       }
       fetchApi()
-      
     },[location])
+    const handaleUpdateOrder = async(value)=>{
+      try {
+        const data =await updateOrderByUserApi(value,dataUser.accessToken)
+        const res  =await getOrderByUserApi(dataUser.accessToken)
+        setDataHistory(res.data)
+        showToast("Hủy đơn hàng thành công")
+      } catch (error) {
+        showToast("Hủy đơn hàng thất bại","error")
+      }
+    }
     return (
+      <div className="relative">
         <div>
             <div className="w-[80%] m-auto min-h-[500px] overflow-x-auto mb-9">
                 <p className="uppercase font-medium text-[20px] text-blue-700 text-center p-2">Lịch sử mua hàng</p>
@@ -90,16 +98,22 @@ const HistoryPage = ()=>{
                             className={`px-2 py-1 rounded text-sm  ${
                               product.status === "Hoàn thành"
                                 ? "bg-green-100 text-green-600"
-                                : "bg-yellow-100 text-yellow-600"
+                                :
+                                product.status === "Hủy" ? 
+                                    "bg-red-200 text-red-600" :  "bg-yellow-100 text-yellow-600"
                             }`}
                           >
                             {product.status}
                           </span>
                         </td>
                         <td className="border-2 px-4 py-2">
-                          <button className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                          { product.status === "Hủy" ?
+                            ""
+                            :
+                          <button onClick={()=>handaleUpdateOrder({"id":product._id , "status" : "Hủy"})} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
                             Hủy
                           </button>
+                          }
                         </td>
                       </tr>
                     ))}
@@ -108,6 +122,14 @@ const HistoryPage = ()=>{
 
             </div>
         </div>
+        {
+            isLoading &&
+            <div className="fixed top-0 bottom-0 left-0 right-0 bg-[#cccccc33] z-0 ">
+              <AiOutlineLoading3Quarters className="animate-spin text-center m-auto mt-60 text-[38px]  text-blue-500"/>
+            </div>
+                        
+          }
+      </div>
     )
 }
 export default HistoryPage

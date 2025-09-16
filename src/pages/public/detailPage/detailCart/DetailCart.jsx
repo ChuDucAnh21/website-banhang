@@ -109,7 +109,7 @@ const DetailCart = ()=>{
                 <div className="flex justify-between flex-wrap  mt-4">
                     {
                         listProductCart.products.length === 0 ?
-                        <div className="min-w-[600px] flex justify-center"><img src="/emptyCart.webp" className="w-[250px] h-[250px]"/></div>
+                        <div className="min-w-[600px] flex justify-center"><img src="/emptyCart.webp" className="w-[250px] mb-2"/></div>
                         : 
                         //danh sach sản phẩm
                         <ul className=" basis-[580px]  mr-3 mb-3 max-h-[400px] overflow-y-auto ">

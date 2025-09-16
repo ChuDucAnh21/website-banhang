@@ -5,7 +5,6 @@ export const getApiProduct = ()=>{
                 if(!res.ok) throw new Error("Failed to fetch products")
                 return res.json()
             })
-           
 }
 export const getApiDetailProduct = (slug)=>{
     return fetch(`/api/product/${slug}`)

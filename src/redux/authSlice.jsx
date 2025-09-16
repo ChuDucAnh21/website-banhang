@@ -28,7 +28,6 @@ const authSlice = createSlice({
             state.userInfor = action.payload
         }
     }
-
 })
-
+export const {setAccessToken}  = authSlice.actions
 export default authSlice
