@@ -10,7 +10,7 @@ import { useToast } from "../../../components/toastMessage/ToastMessage";
 import { addCartUser, orderCartUser, removeCartUser } from "../../../redux/userCartSlice";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { getApiUserCurrent } from "../../../service/userApiService";
-import { orderCartApi } from "../../../service/orderApiService";
+import { orderCartGuestApi } from "../../../service/orderApiService";
 
 
 const OrderPage = ()=>{

@@ -4,9 +4,9 @@ export const ROUTER = {
         PRODUCT :"/product",
         SHIRT :"/productShirt",
         TROUSERS:"/productTrousers",
-        NOTIFICATION:"/notification",
+        BLOG:"/blog",
         DETAIL_PRODUCT:"/detailProduct/:slug",
-        DETAIL_NOTIFICATION:"/detailNotification/:id",
+        DETAIL_BLOG:"/detailBlog/:id",
         DETAIL_CART:"/detailCart",
         ORDER : "/orderProduct",
     },
@@ -16,7 +16,12 @@ export const ROUTER = {
     },
     ADMIN:{
         DASHBOARD : "/admin/dashboard",
-        CREATEPRODUCT:"/admin/createProduct"
+        CREATEPRODUCT:"/admin/createProduct",
+        PRODUCTMANAGER:"/admin/productManager",
+        ORDERMANAGER:"/admin/orderManager",
+        USERMANAGER:"/admin/userManager",
+        CREATEBLOG:"/admin/createBlog",
+        BLOGMANAGER:"/admin/blogManager"
     }
     
 }

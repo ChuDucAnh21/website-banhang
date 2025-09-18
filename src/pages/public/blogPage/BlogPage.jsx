@@ -3,15 +3,25 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { useEffect, useState } from "react"
 import { Breadcrumb } from "../../../components/index"
 import { getApiBlog } from "../../../service/blogApiService"
-const NotificationPage = ()=>{
+const BlogPage = ()=>{
     const [dataNoti,setDataNoti] = useState([])
     const [isLoading,setIsLoading] = useState(true)
     useEffect(()=>{
-        getApiBlog()
-        .then((dt)=>{
-            setDataNoti(dt.data)
-            setIsLoading(false)
-        })
+        const getBlog = async()=>{
+            try {
+                const dt =await getApiBlog()
+                 setDataNoti(dt.data)
+                 setIsLoading(false)
+            } catch (error) {
+                console.error("Lỗi hiển thị Blog",error)
+            }
+        }
+        getBlog()
+        // getApiBlog()
+        // .then((dt)=>{
+        //     setDataNoti(dt.data)
+        //     setIsLoading(false)
+        // })
     },[])
     return (
         <div>
@@ -24,7 +34,7 @@ const NotificationPage = ()=>{
                 {
                     dataNoti.map(noti=>(
                         
-                        <Link key={noti._id} to={generatePath("/detailNotification/:id",{id:noti._id})} className=" w-[400px] h-[280px] overflow-hidden rounded-lg shadow-xl">
+                        <Link key={noti._id} to={generatePath("/detailBlog/:id",{id:noti._id})} className=" w-[400px] h-[280px] overflow-hidden rounded-lg shadow-xl">
                             <img className="h-[90%] w-full" src={noti.image} alt="" />
                             <p className="text-center uppercase">{noti.title}</p>
                         </Link>
@@ -37,4 +47,4 @@ const NotificationPage = ()=>{
     )
 }
 
-export default NotificationPage
+export default BlogPage

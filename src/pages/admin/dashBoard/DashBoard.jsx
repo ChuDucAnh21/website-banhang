@@ -9,11 +9,11 @@ import { AiFillFolderAdd } from "react-icons/ai";
 
 const tabs = [
     { id: "2", namePage: "Tạo Sản phẩm", icon: <BiLogoProductHunt />, href: "/admin/createProduct" },
-    { id: "3", namePage: "Quản lý sản phẩm", icon: <AiFillShopping />, href: "/productShirt" },
-    { id: "4", namePage: "Quản lý đơn hàng", icon: <MdLocalShipping />, href: "/productTrousers" },
-    { id: "5", namePage: "Quản lý người dùng", icon: <FaUserGroup />, href: "/notification" },
-    { id: "6", namePage: "Tạo bài viết", icon: <IoCreateSharp />, href: "/notification" },
-    { id: "7", namePage: "Quản lý bài viết", icon: <AiFillFolderAdd />, href: "/notification" },
+    { id: "3", namePage: "Quản lý sản phẩm", icon: <AiFillShopping />, href: "/admin/productManager" },
+    { id: "4", namePage: "Quản lý đơn hàng", icon: <MdLocalShipping />, href: "/admin/orderManager" },
+    { id: "5", namePage: "Quản lý người dùng", icon: <FaUserGroup />, href: "/admin/userManager" },
+    { id: "6", namePage: "Tạo bài viết", icon: <IoCreateSharp />, href: "/admin/createBlog" },
+    { id: "7", namePage: "Quản lý bài viết", icon: <AiFillFolderAdd />, href: "/admin/BlogManager" },
 ];
 
 
@@ -22,7 +22,7 @@ const DashBoardPage = ()=>{
     return (
         <div className="flex items-start relative">
             <NavbarAdmin/>
-            <div className="flex flex-1 flex-wrap items-start gap-3 p-10 pr-[90px]">
+            <div className="flex items-start flex-1 flex-wrap gap-3 p-10 pr-[90px]">
                 {
                     tabs.map((item)=>(
                         <div key={item.id} onClick={()=>{navigate(item.href)}}  className="w-[200px] h-[100px] rounded-lg  shadow-xl border-2 border-blue-600 flex items-center justify-center hover:border-red-600 hover:cursor-pointer ">

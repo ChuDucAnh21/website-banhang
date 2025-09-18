@@ -1,13 +1,13 @@
 import { NavbarAdmin } from "../../../components/index"
 
-const CreateProduct = ()=>{
+const OrderManage = ()=>{
     return (
         <div className="flex items-start relative">
             <NavbarAdmin/>
             <div>
-                create Product
+              Order Manager
             </div>
         </div>
     )
 }
-export default CreateProduct
+export default OrderManage

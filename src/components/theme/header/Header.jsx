@@ -27,7 +27,7 @@ const tabs = [
     { id: "2", namePage: "Sản phẩm", icon: <RiShoppingBag3Line />, href: "/product" },
     { id: "3", namePage: "Áo", icon: <IoShirtOutline />, href: "/productShirt" },
     { id: "4", namePage: "Quần", icon: <PiPants />, href: "/productTrousers" },
-    { id: "5", namePage: "Thông báo", icon: <FiBell />, href: "/notification" },
+    { id: "5", namePage: "Thông báo", icon: <FiBell />, href: "/blog" },
 ];
 
 
@@ -58,7 +58,6 @@ const Header = ({setShowLogin,setShowRegister})=>{
 
         getApiProduct()
         .then((dt)=>{
-            console.log("Dataproduct Header")
             setDataProduct(dt.data)
         })
 
@@ -69,7 +68,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
 
     useEffect(()=>{  
        window.scrollTo(0, 0);
-          let currentTab = tab;
+        let currentTab = tab;
         const activeTabElement = document.querySelector(
             `.list-nav a[href="${location.pathname}"]`
         );
