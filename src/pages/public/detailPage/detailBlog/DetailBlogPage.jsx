@@ -4,16 +4,26 @@ import { useParams } from "react-router-dom"
 
 import { getApiDetailBlog } from "../../../../service/blogApiService"
 
-const DetailNotificationPage = ()=>{
+const DetailBlogPage = ()=>{
     const [isLoading,setIsLoading] = useState(true)
     const {id} = useParams()
     const [dataDetail,setDataDetail] = useState([])
     useEffect(()=>{
-        getApiDetailBlog(id)
-        .then(dt=>{
-            setDataDetail(dt.data)
-            setIsLoading(false)
-        })
+        const getDetailBlog = async(id)=>{
+            try {
+                const dt =await getApiDetailBlog(id)
+                setDataDetail(dt.data)
+                 setIsLoading(false)
+            } catch (error) {
+                 console.error("Lỗi hiển thị Blog",error)
+            }
+        }
+        getDetailBlog(id)
+        // getApiDetailBlog(id)
+        // .then(dt=>{
+        //     setDataDetail(dt.data)
+        //     setIsLoading(false)
+        // })
     },[])
     return (
         <div className="min-h-[600px] w-[80%] m-auto  pt-2 border-t border-solid border-[#ccc]">
@@ -33,4 +43,4 @@ const DetailNotificationPage = ()=>{
         </div>
     )
 }
-export default DetailNotificationPage
+export default DetailBlogPage

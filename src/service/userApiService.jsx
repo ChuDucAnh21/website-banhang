@@ -51,7 +51,7 @@ export const updateApiUser = async (value,token)=>{
              "Content-Type": "application/json",
              "Authorization": `Bearer ${token}`  //truyền token người dùng vào để gửi lên serve
         },
-        credentials: "include",
+        // credentials: "include",
         body: JSON.stringify({
                 "userName":value.userName,
                 "email": value.email,

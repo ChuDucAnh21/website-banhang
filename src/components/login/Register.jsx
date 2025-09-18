@@ -45,7 +45,7 @@ const Register = ({setShowRegister,showRegister,setShowLogin})=>{
                   <h2 className=" text-center p-4 text-[30px] font-bold text-blue-700 uppercase">Đăng KÝ</h2>
                   <div className="flex">
                         <span className="mt-3 mb-2 font-medium min-w-[160px] ">Email :</span>
-                        <input value={email || ""} onChange={(e)=>setEmail(e.target.value)} className={ `${validate.email ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="text" placeholder="Email" required />
+                        <input value={email || ""} onChange={(e)=>setEmail(e.target.value)} className={ `${validate.email ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="email" placeholder="Email" required />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.email}</p>
                   <div className=" flex mt-2">

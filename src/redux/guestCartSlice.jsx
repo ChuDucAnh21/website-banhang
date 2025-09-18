@@ -62,9 +62,7 @@ const guestCartSlice = createSlice({
             state.products = [],
             state.total = 0
         },
-
     }
-
 })
 
 export default guestCartSlice

@@ -1,6 +1,6 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
-import { SelectUser } from "./selector";
-import { useSelector ,useDispatch } from "react-redux";
+// import { SelectUser } from "./selector";
+// import { useSelector ,useDispatch } from "react-redux";
 import { getApiUserCurrent,addToCartUserApi,removeToCartUserApi } from "../service/userApiService";
 import { orderCartApi } from "../service/orderApiService";
 
@@ -123,7 +123,7 @@ const userCartSlice = createSlice({
 })
 export const fetchCart = createAsyncThunk("userCart/fetchCart", async(token,thunkAPI)=>{
      
-    //  console.log("in fetchCart")
+    
      try{
         const dataCurrentUser = await getApiUserCurrent(token)  //Lấy thông tin của user đăng đăng nhập 
         // console.log("fetch dataCurrentUser",dataCurrentUser)

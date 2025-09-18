@@ -23,16 +23,21 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
         if (Object.keys(validate).length === 0) {
             try {
                 const dataServer = await loginApiUser({ email, password });
-                showToast("Đăng nhập thành công");
-
+                
+                //Lưu accessToken vào localStorage
+                localStorage.setItem("accessToken", dataServer.data.accessToken);
+                //Lưu accessToken vào store (Redux)
                 dispatch(
                     authSlice.actions.loginSuccess({
                         accessToken: dataServer.data.accessToken,
-                        dataUser:{ ...dataServer.data.user,"password" : password},
+                        dataUser:{ ...dataServer.data.user,"password" : password , "refreshToken" : dataServer.data.refreshToken},
                         role: dataServer.data.user.role,
                     })
                 );
+                //lấy thông tin giỏ hàng của user
                 dispatch(fetchCart(dataServer.data.accessToken))
+                showToast("Đăng nhập thành công");
+
                 setShowLogin(false);
                 
             } catch (err) {

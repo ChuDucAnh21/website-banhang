@@ -14,20 +14,20 @@ import { IoShirtOutline } from "react-icons/io5";
 import { PiPants } from "react-icons/pi";
 import { FiBell } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
-import { MdDeleteOutline } from "react-icons/md";
-import CartProduct from '../../../components/cartProduct/CartProduct';
+import { CartProduct ,SearchProduct } from '../../../components/index';
 import { useSelector,useDispatch } from 'react-redux';
 import guestCartSlice from '../../../redux/guestCartSlice';
 import authSlice from '../../../redux/authSlice';
 import { SelectGuestCart,SelectUser, SelectUserCart } from '../../../redux/selector';
 import { logoutApiUser } from '../../../service/userApiService';
 import { useToast } from '../../../components/toastMessage/ToastMessage';
+import { getApiProduct } from '../../../service/productApiService';
 const tabs = [
     { id: "1", namePage: "Trang chủ", icon: <AiOutlineHome />, href: "/" },
     { id: "2", namePage: "Sản phẩm", icon: <RiShoppingBag3Line />, href: "/product" },
     { id: "3", namePage: "Áo", icon: <IoShirtOutline />, href: "/productShirt" },
     { id: "4", namePage: "Quần", icon: <PiPants />, href: "/productTrousers" },
-    { id: "5", namePage: "Thông báo", icon: <FiBell />, href: "/notification" },
+    { id: "5", namePage: "Thông báo", icon: <FiBell />, href: "/blog" },
 ];
 
 
@@ -40,6 +40,8 @@ const Header = ({setShowLogin,setShowRegister})=>{
     const refLine = useRef(null)
     const [shownav,setShownav] = useState(false)
     const [showCart,setShowCart] = useState(false)
+    const [textSearch,setTextSearch] = useState("")
+    const [dataProduct,setDataProduct] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const dataUser = useSelector(SelectUser)
@@ -53,6 +55,12 @@ const Header = ({setShowLogin,setShowRegister})=>{
             setWidthWindow(window.innerWidth);
         };
         window.addEventListener("resize", handleResize);
+
+        getApiProduct()
+        .then((dt)=>{
+            setDataProduct(dt.data)
+        })
+
         return () => {
             window.removeEventListener("resize", handleResize);
         };
@@ -60,7 +68,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
 
     useEffect(()=>{  
        window.scrollTo(0, 0);
-          let currentTab = tab;
+        let currentTab = tab;
         const activeTabElement = document.querySelector(
             `.list-nav a[href="${location.pathname}"]`
         );
@@ -123,7 +131,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
                                      dataUser.role ==="user" ? 
                                      <li onClick={()=>{navigate("/history-buy"); setShownav(!shownav)}}  className='pt-2 pb-2 pl-6 hover:text-[#ff0000] hover:cursor-pointer'>Lịch sử mua hàng</li>
                                      :
-                                     <li onClick={()=>{navigate("/profile"); setShownav(!shownav)}}  className='pt-2 pb-2 pl-6 hover:text-[#ff0000] hover:cursor-pointer'>Quản lý cửa hàng</li>
+                                     <li onClick={()=>{navigate("/admin/dashboard"); setShownav(!shownav)}}  className='pt-2 pb-2 pl-6 hover:text-[#ff0000] hover:cursor-pointer'>Quản lý cửa hàng</li>
 
                                    }
                                 </ul>
@@ -149,11 +157,12 @@ const Header = ({setShowLogin,setShowRegister})=>{
                 </Link>
                 <div className='flex flex-1 justify-around items-center'>
                     {/* input tìm kiếm */}
-                    <div className='search-heading w-[70%] md:w-[50%] lg:w-[40%] ml-2'>
-                        <input className='input-search' type="text" placeholder='Bạn cần tìm gì ?' />
+                    <div className='relative search-heading w-[70%] md:w-[50%] lg:w-[40%] ml-2'>
+                        <input className='input-search' type="text" placeholder='Bạn cần tìm gì ?' value={textSearch} onChange={e=>setTextSearch(e.target.value)} />
                         <div className='icon-search flex justify-center items-center'>
                             <IoIosSearch className='w-full' />
                         </div>
+                        {textSearch!=="" && <SearchProduct setTextSearch={setTextSearch} dataProduct={dataProduct} textSearch = {textSearch}/>}
                     </div>
                     {/* liên hệ  */}
                     <div className='contact-heading items-center hidden lg:flex'>
@@ -185,7 +194,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
                                         <li className='p-1 cursor-pointer hover:bg-blue-50'><Link to={"/profile"}>Thông tin tài khoản</Link></li>
                                         {
                                             dataUser.role === "admin" ? 
-                                                <li className='p-1 cursor-pointer hover:bg-blue-50'>Quản lý của hàng</li>
+                                                <li onClick={()=>{navigate("/admin/dashboard")}} className='p-1 cursor-pointer hover:bg-blue-50'>Quản lý của hàng</li>
                                                 : 
                                                 <li className='p-1 cursor-pointer hover:bg-blue-50'><Link to={"/history-buy"}>Lịch sử mua hàng</Link></li>
                                         }
