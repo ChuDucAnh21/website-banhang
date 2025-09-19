@@ -19,9 +19,10 @@ const OrderPage = ()=>{
     const {showToast} = useToast()
     const [name,setName] = useState(dataUser.role ?dataUser.userInfor.userName : "")
     const [email,setEmail] = useState(dataUser.role ?dataUser.userInfor.email : "")
-    const [address,setAddress] = useState(dataUser.role ?dataUser.userInfor.address : "")
+    const [address,setAddress] = useState(dataUser.role ? dataUser.userInfor.address : "")
     const [phone,setPhone] = useState(dataUser.role ?dataUser.userInfor.phoneNumber : "")
     const [textNote,setTextNote] = useState("")
+    const [checkvalid,setCheckvalid] = useState(false)
     const dispatch = useDispatch()
     const listProductCart =dataUser.role==="user" || dataUser.role==="admin" ?useSelector(SelectUserCart) : useSelector(SelectGuestCart)
      const handelQuatity = async(e,data)=>{
@@ -103,15 +104,33 @@ const OrderPage = ()=>{
     const handelOrder  = async()=>{
         if(listProductCart.products.length!==0){
             if(dataUser.role){
-                try {
-                  const dataUserCurrent = await getApiUserCurrent(dataUser.accessToken)
-                  await dispatch(orderCartUser({
-                      "value":{...dataUserCurrent.data, note:textNote},
-                      "token":dataUser.accessToken
-                  })).unwrap()
-                   showToast("Đặt hàng thành công")
-                } catch (error) {
-                   showToast("Đặt hàng thất bại","error")
+                if(address === "" || address===undefined || name==="" || email==="" || phone===""){
+                   showToast("Chưa đầy đủ thông tin","error")
+                    setCheckvalid(true)
+                }
+                
+                else{
+                //     "address": value.address,
+                // "email": value.email,
+                // "phoneNumber": value.phoneNumber,
+                // "userName": value.userName
+                    try {
+                      const dataUserCurrent = await getApiUserCurrent(dataUser.accessToken)
+                      await dispatch(orderCartUser({
+                          "value":{
+                                ...dataUserCurrent.data,
+                                "userName":name,
+                                "email" : email,
+                                "phoneNumber" : phone, 
+                                "note":textNote,
+                                "address":address
+                             },
+                          "token":dataUser.accessToken
+                      })).unwrap()
+                       showToast("Đặt hàng thành công")
+                    } catch (error) {
+                       showToast("Đặt hàng thất bại","error")
+                    }
                 }
             }
             else{
@@ -139,7 +158,7 @@ const OrderPage = ()=>{
                        <input value={name || ""} onChange={e=>setName(e.target.value)} className="outline-none rounded-t-md border p-1 pl-3 flex-[1_0_5rem]" type="text" placeholder="Họ tên" />
                        <input value={email || ""} onChange={e=>setEmail(e.target.value)} className="outline-none rounded-t-md border p-1 pl-3 flex-[1_0_5rem]" type="text" placeholder="Email" />
                        <input value={phone || ""} onChange={e=>setPhone(e.target.value)} className="outline-none rounded-t-md border p-1 pl-3 flex-[1_0_100%]" type="text" placeholder="Số điện thoại" />
-                       <input value={address || ""} onChange={e=>setAddress(e.target.value)} className="outline-none rounded-t-md border p-1 pl-3 flex-[1_0_100%]" type="text" placeholder="Địa chỉ" />
+                       <input onClick={()=>setCheckvalid(false)} value={address || ""} onChange={e=>setAddress(e.target.value)} className={`${checkvalid ? "border border-red-600" : "border"} outline-none rounded-t-md  p-1 pl-3 flex-[1_0_100%]`} type="text" placeholder="Địa chỉ" />
                        <textarea value={textNote} onChange={e=>setTextNote(e.target.value)} className="outline-none rounded-t-md border p-1 pl-3 flex-[1_0_100%] h-[100px]" type="text" placeholder="Ghi chú" />
                     </form>
                     <div>

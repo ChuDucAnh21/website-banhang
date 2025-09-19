@@ -34,6 +34,7 @@ export const apiFetch = async (url, options = {}) => {
               "Authorization": `Bearer ${accessTokenNew}`,
           }
         });
+        if(!res.ok) throw new Error("Lỗi : call Api failed ");
     } else {
       console.error("Refresh failed → logout user");
       throw new Error("Unauthorized - Please login again");

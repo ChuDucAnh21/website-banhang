@@ -16,6 +16,7 @@ const ProfilePage = ()=>{
     const [email,setEmail] = useState("")
     const [phone,setPhone] = useState("")
     const [password,setPassWord] = useState("")
+    const [checkVali,setCheckValid] = useState(false)
     
    
     useEffect(() => {
@@ -35,6 +36,8 @@ const ProfilePage = ()=>{
         };
         fetchUser();
     },[]);
+
+   
     const handelChangeInfo = async()=>{
        try{
         if(password !== ""){
@@ -59,6 +62,7 @@ const ProfilePage = ()=>{
             }
         }
         else{
+            setCheckValid(true)
             showToast("Bạn chưa nhập đủ thông tin","error")
         }
        }
@@ -94,10 +98,10 @@ const ProfilePage = ()=>{
                     </div>
                      <div className="flex items-center flex-wrap mb-2">
                         <p className="w-[150px] font-medium flex flex-col">Nhập PassWord: <span className="text-[12px] text-red-500">(Bắt buộc)</span></p>
-                        <input className="flex-1 p-1 pl-4 border rounded-md outline-blue-400" type="password"  value={password} onChange={e=>setPassWord(e.target.value)} />
+                        <input onClick={()=>setCheckValid(false)} autoComplete="new-password" className={ ` ${checkVali ? "border border-red-600" : "border"} flex-1 p-1 pl-4  rounded-md outline-blue-400`} type="password"  value={password} onChange={e=>setPassWord(e.target.value)} />
                     </div>
                 <div className="flex justify-center">
-                        <button onClick={handelChangeInfo} className="bg-blue-500 min-w-[180px] mt-2 rounded-lg text-white p-1 pl-4 pr-4 cursor-pointer hover:opacity-90">
+                        <button onClick={handelChangeInfo} className=" bg-blue-500 min-w-[180px] mt-2 rounded-lg text-white p-1 pl-4 pr-4 cursor-pointer hover:opacity-90">
                             Lưu thay đổi
                         </button>
                 </div>

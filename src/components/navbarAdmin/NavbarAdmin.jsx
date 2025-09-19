@@ -21,11 +21,10 @@ const tabs = [
 
 const NavbarAdmin = ()=>{
     const location = useLocation()
-    console.log(location.pathname)
     const [tabSelect,setTabSelect] = useState("/admin/dashboard")
     return (
         // <div className="w-[200px] h-svh bg-blue-100 ">
-            <div className='w-[24%] border-r-2 min-h-[600px]  '>
+            <div className='w-[20%] border-r-2 min-h-[600px]  '>
                           <div className=' flex flex-col items-center h-full  bg-[#fff] '>
                                <img src="/logo.png" alt="" className='ml-2 pt-2 pb-2 mr-9 block w-[40%] md:inline'/>
                                <ul className='w-full'>
@@ -33,10 +32,7 @@ const NavbarAdmin = ()=>{
                                        <li className={`${location.pathname === itemTab.href ? "bg-[#ffecec] text-red-500" : ""} w-full border-t border-b font-medium hover:text-[#ff0000] `} key={itemTab.id}  >
                                            <Link  to={itemTab.href} 
                                                className='w-full flex items-center p-3 pl-6' 
-                                               // ref={itemTab.id === "1" ? firstLiRef : null } 
-                                               onClick={()=>{
-                                                   setTabSelect(location.pathname)
-                                               }}
+                                               
                                            >
                                                    <span className='mr-2 relative top-[0.9px] text-[18px]'> {itemTab.icon}</span>
                                                     {itemTab.namePage}  
