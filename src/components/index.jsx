@@ -7,4 +7,10 @@ import FilterNavbar from "./filterProduct/FilterNavbar.jsx"
 import ListProduct from "./listProduct/ListProduct.jsx"
 import Button from "./button/Button.jsx"
 import NavbarAdmin from "./navbarAdmin/NavbarAdmin.jsx"
-export {Slider,Product,Breadcrumb,FilterNavbar,ListProduct,Button,SearchProduct,CartProduct,NavbarAdmin}
+import ModalOrder from "./modal/modalOrder.jsx"
+import ModalUpdateUser from "./modal/modalUpdateUser.jsx"
+import ModalDeleteUser from "./modal/modalDeleteUser.jsx"
+import ModalDeleteProduct from "./modal/modalDeleteProduct.jsx"
+import ModalUpdateProduct from "./modal/modalUpdateProduct.jsx"
+import ModalDeleteBlog from "./modal/modalDeleteBlog.jsx"
+export {ModalDeleteBlog,ModalUpdateProduct,ModalDeleteProduct,ModalDeleteUser,ModalUpdateUser,ModalOrder,Slider,Product,Breadcrumb,FilterNavbar,ListProduct,Button,SearchProduct,CartProduct,NavbarAdmin}

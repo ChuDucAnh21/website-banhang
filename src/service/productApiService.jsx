@@ -22,24 +22,14 @@ export const getApiCategoryProduct = ()=>{
                 })
 }
 
-export const createProductApi = async(token)=>{   //Tạo mới 1 sp bởi ADMIN
+export const createProductApi = async(token ,value)=>{   //Tạo mới 1 sp bởi ADMIN
+    console.log("Value form Data", value)
     const data = apiFetch("/api/product/create",{
          method:"POST",
         headers:{
-            "Content-Type": "application/json",
              "Authorization": `Bearer ${token}`,
         },
-         body: JSON.stringify({
-             "title": "test",
-            "price": 11111,
-            "description": "<p>abc</p>",
-            "category": "66ebed677c9dabee5de0eae5",
-            "brand": "Atino",
-            "options": "[{\"color\":\"trắng\",\"sizeQuantity\":[{\"size\":\"S\",\"quantity\":12}]}]",
-            "option[0][images]": [
-                "string"
-            ]
-         })
+         body: value
     })
     return data
 }
@@ -58,27 +48,13 @@ export const deleteProductApi = async(id,token)=>{  //Xóa 1 sản phẩm bới 
     return data
 }
 
-export const updateProductApi = async(value,token)=>{
+export const updateProductApi = async(token,value)=>{
     const data = await apiFetch("/api/product/update",{
         method:"PUT",
         headers:{
-            "Content-Type": "application/json",
              "Authorization": `Bearer ${token}`,
         },
-        body:JSON.stringify({
-            "_id": "string",
-            "title": "string",
-            "price": 0,
-            "slug": "string",
-            "description": "string",
-            "brand": "string",
-            "stock": 0,
-            "category": "string",
-            "options": "[{\"color\":\"đen\",\"sizeQuantity\":[{\"size\":\"S\",\"quantity\":22}]}]",
-            "images": [
-                "string"
-            ]
-        })
+        body: value
     })
     return data
 }

@@ -53,7 +53,7 @@ export const updateBlogApi = async(value,token)=>{
     return data
 }
 export const deleteBlogApi = async(id,token)=>{
-    const data = await apiFetch(`api/blog/delete/${id}`,{
+    const data = await apiFetch(`/api/blog/delete/${id}`,{
         method:"DELETE",
         headers:{
             "Authorization": `Bearer ${token}`

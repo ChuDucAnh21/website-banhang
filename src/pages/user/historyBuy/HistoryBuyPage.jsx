@@ -56,7 +56,7 @@ const HistoryPage = ()=>{
                     {dataHistory.map((product) => (
                       <tr key={product._id} className="hover:bg-gray-50">
                         <td className="border-2 px-4 py-2">{product.createdAt.slice(0,10)}</td>
-                        <td className="border-2 px-4 py-2"><span className="w-auto">{product._id}</span></td>
+                        <td className="border-2 max-w-[90px] truncate px-4 py-2"><span className="w-auto">{product._id}</span></td>
                         <td className="border-2 px-4 py-2 ">
                          <div className="min-w-[200px]">
                           <p>Người nhận : <span className="font-medium">{product.orderBy.userName}</span></p>

@@ -2,6 +2,7 @@ import { memo, useEffect, useState, useTransition } from "react"
 
 import Product  from "../itemProduct/Product.jsx"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const ListProduct = (prop)=>{
     const [arrange,setArrange] = useState("1")
@@ -12,6 +13,13 @@ const ListProduct = (prop)=>{
         }
         prop.handelFilterChange(dt)
     },[arrange])
+
+    const [currentPage, setCurrentPage] = useState(1);
+     const itemsPerPage = 12;
+      const totalPages = Math.ceil(prop.data.length / itemsPerPage);
+      const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentItems = prop.data?.slice(startIndex, startIndex + itemsPerPage);
+
 
     return (
         <div className="min-h-[700px]">
@@ -34,7 +42,7 @@ const ListProduct = (prop)=>{
                  :
                 <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                     {
-                       prop.data?.map((product)=>(
+                      currentItems?.map((product)=>(
                         <div key={product._id}  className=" w-[100%]">
                         
                                 <Product
@@ -49,6 +57,11 @@ const ListProduct = (prop)=>{
                     ))}
                 </div>
             }
+                    <div className="flex justify-end mt-3 ">
+                                <button    disabled={currentPage === 1}  onClick={() => setCurrentPage((p) => p - 1)} className="bg-[#ddd] w-[30px] border h-[30px] flex items-center justify-center"><MdKeyboardDoubleArrowLeft/></button>
+                                <p className="border">Trang {currentPage}/{totalPages}</p>
+                                 <button  disabled={currentPage === totalPages} onClick={() => setCurrentPage((p) => p + 1)} className="bg-[#ddd] w-[30px] border h-[30px] flex items-center justify-center"><MdKeyboardDoubleArrowRight/></button>
+                    </div>                    
         </div>
     )
 }

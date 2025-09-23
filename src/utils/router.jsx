@@ -21,7 +21,7 @@ export const ROUTER = {
         ORDERMANAGER:"/admin/orderManager",
         USERMANAGER:"/admin/userManager",
         CREATEBLOG:"/admin/createBlog",
-        BLOGMANAGER:"/admin/blogManager"
+        BLOGMANAGER:"/admin/blogManager",
     }
     
 }

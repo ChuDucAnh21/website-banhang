@@ -21,17 +21,21 @@ const Register = ({setShowRegister,showRegister,setShowLogin})=>{
 
                   const validate = validateForm({ "email":email, "phone" : phoneNumber,"name" : userName, "password":password, "confirmPassword":confirmPassword },"register")
                   setValidate(validate)
-                  if(email ==="" || phoneNumber ==="" || userName==="" || password===""){
+                  if(email ==="" || phoneNumber ==="" || userName==="" || password==="" || confirmPassword===""){
                         showToast("Bạn cần nhập đủ thông tin","error")
                   }
                   else{
-                       const data =await registerApiUser({
-                              email,
-                              phoneNumber,
-                              userName,
-                              password
-                        })
-                        showToast("Đăng kí thành công")
+                        if(Object.keys(validate).length === 0){
+                              const data = await registerApiUser({
+                                     email,
+                                     phoneNumber,
+                                     userName,
+                                     password
+                               })
+                               showToast("Đăng kí thành công ok")
+                               setShowRegister(false)
+                               setShowLogin(true)
+                        }
                   }
             }
             catch(err){
@@ -45,30 +49,30 @@ const Register = ({setShowRegister,showRegister,setShowLogin})=>{
                   <h2 className=" text-center p-4 text-[30px] font-bold text-blue-700 uppercase">Đăng KÝ</h2>
                   <div className="flex">
                         <span className="mt-3 mb-2 font-medium min-w-[160px] ">Email :</span>
-                        <input value={email || ""} onChange={(e)=>setEmail(e.target.value)} className={ `${validate.email ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="email" placeholder="Email" required />
+                        <input value={email || ""} onChange={(e)=>setEmail(e.target.value)} className={ `${validate.email ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="email" placeholder="Email"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.email}</p>
                   <div className=" flex mt-2">
                         <span className="mt-3 mb-2 font-medium min-w-[160px]">Số điện thoại :</span>
-                        <input value={phoneNumber || ""} onChange={(e)=>setPhoneNumber(e.target.value)} className={ `${validate.phone ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="text" placeholder="Số điện thoại" required />
+                        <input value={phoneNumber || ""} onChange={(e)=>setPhoneNumber(e.target.value)} className={ `${validate.phone ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="text" placeholder="Số điện thoại"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.phone}</p>
 
                   <div className=" flex mt-2">
                         <span className="mt-3 mb-2 font-medium min-w-[160px]">Họ và tên :</span>
-                        <input value={userName|| ""} onChange={(e)=>setUserName(e.target.value)} className={ `${validate.name ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="text" placeholder="Họ và tên" required />
+                        <input autoComplete="new-password" value={userName|| ""} onChange={(e)=>setUserName(e.target.value)} className={ `${validate.name ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="text" placeholder="Họ và tên"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.name}</p>
 
                   <div className=" flex items-center mt-2">
                         <span className="mb-2 font-medium min-w-[160px]">Mật khẩu :</span>
-                        <input value={password|| ""} onChange={(e)=>setPassword(e.target.value)} className={ `${validate.password ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-2 pb-2 pl-3 rounded-lg flex-1 border border-solid `} type="password" placeholder="Mật khẩu" required />
+                        <input autoComplete="new-password" value={password|| ""} onChange={(e)=>setPassword(e.target.value)} className={ `${validate.password ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-2 pb-2 pl-3 rounded-lg flex-1 border border-solid `} type="password" placeholder="Mật khẩu"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.password}</p>
 
                   <div className=" flex items-center mt-2">
                         <span className="mb-2 font-medium min-w-[160px]">Nhập lại mật khẩu :</span>
-                        <input value={confirmPassword ||""}  onChange={(e)=> setConfirmPassword(e.target.value)} className={ `${validate.confirmPassword ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-2 pb-2 pl-3 rounded-lg flex-1 border border-solid `} type="password" placeholder="Nhập lại mật khẩu" required />
+                        <input value={confirmPassword ||""}  onChange={(e)=> setConfirmPassword(e.target.value)} className={ `${validate.confirmPassword ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-2 pb-2 pl-3 rounded-lg flex-1 border border-solid `} type="password" placeholder="Nhập lại mật khẩu"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.confirmPassword}</p>
 

@@ -54,13 +54,7 @@
   border-radius: 50px;
 }
 
-.profile-content {
-  display: none;
-}
 
-.profile-heading:hover .profile-content {
-  display: block;
-}
 
 .container-nav {
   width: 100%;
@@ -124,6 +118,6 @@
   transition: all ease-out 0.4s;
 }
 
-.itemAccoutNavbarMobile:hover {
-  max-height: 118px;
+.itemAccoutNavbarMobile:focus {
+  max-height: 134px;
 }/*# sourceMappingURL=style.css.map */

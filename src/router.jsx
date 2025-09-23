@@ -10,7 +10,7 @@ import DetailCart from "./pages/public/detailPage/detailCart/DetailCart";
 import OrderPage from "./pages/public/orderPage/OrderPage";
 import HistoryPage from "./pages/user/historyBuy/HistoryBuyPage";
 import ProfilePage from "./pages/user/profilePage/ProfilePage";
-import { DashBoardPage,CreateProduct,ProductManage,OrderManage,UserManage,CreateBlog,BlogManage } from "./pages/admin/index";
+import {DashBoardPage,CreateProduct,ProductManage,OrderManage,UserManage,CreateBlog,BlogManage } from "./pages/admin/index";
 
 
 export const router = createBrowserRouter([

@@ -43,7 +43,7 @@ export const logoutApiUser = async()=>{
 }
 
 
-////Cập nhật thông tin User
+////Cập nhật thông tin User by User
 export const updateApiUser = async (value,token)=>{
     const data = await apiFetch("/api/user/current",{
         method:"PUT",
@@ -113,14 +113,43 @@ export const removeToCartUserApi = async(value,token)=>{
     return data
 }
 
-
-export const getAllUserApi = async(token)=>{
+//lấy thông tin tất cả user bởi admin
+export const getAllUserApi = async(token)=>{  
     const data = await apiFetch("/api/user",{
         method:"GET",
         headers: {
              "Content-Type": "application/json",
              "Authorization": `Bearer ${token}`  //truyền token người dùng vào để gửi lên serve
         },
+    })
+    return data
+}
+
+//cập nhật user bởi admin (vai trò, trạng thái)
+
+export const updateUserByAdminApi = async(value,token)=>{
+    const data  = await apiFetch(`/api/user/?uid=${value.id}`,{
+        method:"PUT",
+        headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`  //truyền token người dùng vào để gửi lên serve
+        },
+        body:JSON.stringify({
+            "role" : value.role,
+            "isBlocked" : value.isBlocked
+        })
+    })
+    return data
+}
+
+//Xóa user bởi admin
+export const deleteUserByAdminApi = async(id,token)=>{
+    const data  = await apiFetch(`/api/user/?uid=${id}`,{
+        method:"DELETE",
+        headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`  //truyền token người dùng vào để gửi lên serve
+        }
     })
     return data
 }

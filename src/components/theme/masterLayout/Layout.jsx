@@ -21,7 +21,7 @@ const Layout = ()=>{
     const [showRegister,setShowRegister] = useState(false)
     return (
 
-        <div className="relative">
+        <div className="relative ">
             <Header setShowLogin = {setShowLogin} setShowRegister={setShowRegister}/>
             <Outlet/>     
             <Footer/>

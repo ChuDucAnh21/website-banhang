@@ -86,7 +86,7 @@ const DetailProductPage = ()=>{
         }
         else{
             try{
-                if(dataUser.role){  //thêm giỏ hàng chế độ user || admin
+                if(dataUser.role==="admin" || dataUser.role==="user"){  //thêm giỏ hàng chế độ user || admin
                 
                   await dispatch(addCartUser({
                             value: {
