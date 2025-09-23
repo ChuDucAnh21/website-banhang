@@ -10,4 +10,7 @@ import NavbarAdmin from "./navbarAdmin/NavbarAdmin.jsx"
 import ModalOrder from "./modal/modalOrder.jsx"
 import ModalUpdateUser from "./modal/modalUpdateUser.jsx"
 import ModalDeleteUser from "./modal/modalDeleteUser.jsx"
-export {ModalDeleteUser,ModalUpdateUser,ModalOrder,Slider,Product,Breadcrumb,FilterNavbar,ListProduct,Button,SearchProduct,CartProduct,NavbarAdmin}
+import ModalDeleteProduct from "./modal/modalDeleteProduct.jsx"
+import ModalUpdateProduct from "./modal/modalUpdateProduct.jsx"
+import ModalDeleteBlog from "./modal/modalDeleteBlog.jsx"
+export {ModalDeleteBlog,ModalUpdateProduct,ModalDeleteProduct,ModalDeleteUser,ModalUpdateUser,ModalOrder,Slider,Product,Breadcrumb,FilterNavbar,ListProduct,Button,SearchProduct,CartProduct,NavbarAdmin}

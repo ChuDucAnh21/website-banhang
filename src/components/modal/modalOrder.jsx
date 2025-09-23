@@ -12,6 +12,7 @@ const ModalOrder = (prop)=>{
 
     const handelUpdateStatus  = async()=>{
         prop.setIsLoading(true)
+        prop.setShowModal(false)
         try {
             const value = {
                 "id" : prop.dataModal._id,
@@ -23,7 +24,6 @@ const ModalOrder = (prop)=>{
             console.error("Lỗi : ",error)
             showToast("Cập nhật trạng thái thất bại","error")
         }
-        prop.setShowModal(false)
         await prop.fethOrder()
         prop.setIsLoading(false)
     }

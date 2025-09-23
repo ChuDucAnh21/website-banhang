@@ -182,8 +182,8 @@ const OrderPage = ()=>{
                             {
                                 listProductCart.products.map((product,index)=>(
                                     <li key={product.id+"-"+index} className=' mt-2 mb-3 min-w-[346px] min-h-[70px] pl-2 pr-1 border-b border-solid border-[#ddd] '>
-                                        <Link to={generatePath("/detailProduct/:slug",{slug:product.slug})} className='flex items-center'>
-                                            <img src={product.img} className='w-[60px]' alt="" />
+                                        <Link to={generatePath("/detailProduct/:slug",{slug:product.slug||""})} className='flex items-center'>
+                                            <img src={product.img} className='w-[60px] h-[60px] object-cover' alt="" />
                                             <div className='flex items-center justify-between w-full text-[13px] pl-1 pr-1'>
                                                 <div>
                                                     <p className='text-[15px] font-medium'>{product.name}</p>

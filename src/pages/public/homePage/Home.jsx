@@ -37,7 +37,6 @@ const HomePage = ()=>{
     const [dataProduct,setDataProduct] = useState([])
    const [loading,setLoading] = useState(true)
 
-
     useEffect(()=>{
             getApiProduct()
                     .then((dt)=>{
@@ -72,7 +71,7 @@ const HomePage = ()=>{
                       {loading ?
                        <div className=" mt-10 w-full"><AiOutlineLoading3Quarters className="animate-spin text-center m-auto text-[28px] text-blue-500"/></div>
                         :
-                       <div className='mt-5'>
+                       <div className={`mt-5`}>
                            <Slider
                                 className = 'w-[80%] h-[416px] '
                                 time = {5000}
@@ -128,7 +127,7 @@ const HomePage = ()=>{
                                 <div key={outfit.id} className='outfit-product min-h-[300px] w-[100%]   shadow-lg'>
                                     <img src={outfit.img} alt="" />
                                     <p className='uppercase mt-2 mb-2 ml-2'>{outfit.name}</p>
-                                    <button className="border border-[#c23564] rounded bg-white text-[#c23564] p-2 pr-4 pl-4 mb-4 ml-2">Quan tâm</button>
+                                    <button className={`border border-[#c23564] rounded bg-white text-[#c23564] p-2 pr-4 pl-4 mb-4 ml-2 focus:bg-[#c23564] focus:text-white`}>Quan tâm</button>
                                 </div>
                             ))}
                        </div>

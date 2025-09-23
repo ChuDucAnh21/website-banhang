@@ -17,12 +17,12 @@ export const apiFetch = async (url, options = {}) => {
           method: "GET",
           credentials: "include",
       });
-      if (!dt.ok) throw new Error("Failed to get accessToken user");
+      if (!dt.ok) throw new Error("Failed to get accessToken user , Unauthorized - Please login again");
       const dataRefresh = await dt.json();
       const accessTokenNew = dataRefresh.data.accessToken
       
 
-      if (dt.ok) {
+    if (dt.ok) {
         console.log("Refresh success → retry original request");
          //lưu accessToken mới vào localStorage để kiểm tra trong layout.jsx
         localStorage.setItem("accessToken", accessTokenNew);
@@ -36,6 +36,13 @@ export const apiFetch = async (url, options = {}) => {
         });
         if(!res.ok) throw new Error("Lỗi : call Api failed ");
     } else {
+      try {
+        await fetch("/api/user/logout",{
+          method:"POST"
+        })
+      } catch (error) {
+        console.error("Logout failed->Please re-load page");
+      }
       console.error("Refresh failed → logout user");
       throw new Error("Unauthorized - Please login again");
     }

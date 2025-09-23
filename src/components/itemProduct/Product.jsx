@@ -6,11 +6,13 @@ import Button from "../button/Button";
 const Product = (prop)=>{
     return(
         <Link to={generatePath("/detailProduct/:slug",{slug:prop.slug })} className="hover:bg-blue-50 w-full h-full bg-white flex flex-col shadow-lg pb-1">
-            <img 
+           <div className="">
+             <img 
                src={prop.img || "https://media.istockphoto.com/id/1392886556/vector/image-not-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=hvhd43sMPAhtyfhIManqHBspHH6YOE_9ikIaLEdy7Bc=" }
                alt="" 
-               className="w-full "
+               className="w-full h-[260px] object-contain lg:object-cover"
             />
+           </div>
            <div className="pl-2 pr-2 relative flex-1  ">
                 <p className="mt-2 truncate ">{prop.name}</p>
                 <div className="flex justify-start items-end">

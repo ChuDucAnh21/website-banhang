@@ -64,12 +64,12 @@ const CartProduct = ({setShowCart}) => {
                 <li onClick={() => setShowCart(false)} key={product.id+"-"+index} className="bg-blue-50 mt-1 h-[70px] pl-1 pr-1 border border-solid border-[#ddd] ">
                     <Link
                         to={generatePath("/detailProduct/:slug", {
-                             slug: product.slug,
+                             slug: product.slug || "",
                         })}
                         // onClick={() => setShowCart(!showCart)}
                         className="flex items-center"
                     >
-                        <img src={product.img} className="w-[60px]" alt="" />
+                        <img src={product.img} className="w-[60px] h-[60px] object-cover" alt="" />
                         <div className="flex items-center justify-between w-full text-[13px] pl-1 pr-1">
                         <div>
                                 <p className="text-[15px] font-medium">{product.name}</p>

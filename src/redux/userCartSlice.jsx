@@ -128,9 +128,9 @@ export const fetchCart = createAsyncThunk("userCart/fetchCart", async(token,thun
         const dataCurrentUser = await getApiUserCurrent(token)  //Lấy thông tin của user đăng đăng nhập 
         // console.log("fetch dataCurrentUser",dataCurrentUser)
         const CartUser = dataCurrentUser.data.cart.map(item=>({
-                    id :item.product._id,
-                    slug :item.product.slug,
-                    name : item.product.title,
+                    id :item?.product?._id,
+                    slug :item?.product?.slug,
+                    name : item?.product?.title,
                     img : item.product?.options?.[0].images?.[0],
                     size : item.size,
                     color : item.color,
@@ -152,10 +152,10 @@ export const addCartUser = createAsyncThunk("userCart/addCartUser",async({value,
         const dataCurrentUser = await addToCartUserApi(value,token)  // khi thêm thành công trả về toàn bộ infor user (bao gồm giỏ hàng)
         // console.log("dataCurrentUser",dataCurrentUser)
             const cartUser = dataCurrentUser.data.cart.map(item=>({
-                        id :item.product._id,   //ok
-                        slug :item.product.slug, 
-                        name : item.product.title,  
-                        img : item.product?.options?.[0].images?.[0],
+                        id :item?.product?._id,   //ok
+                        slug :item?.product?.slug, 
+                        name : item?.product?.title,  
+                        img : item?.product?.options?.[0].images?.[0],
                         size : item.size,     //ok
                         color : item.color,   //ok
                         price : item.price,  //ok

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { NavbarAdmin } from "../../../components/index"
-import { getApiBlog,getApiDetailBlog,updateBlogApi } from "../../../service/blogApiService"
+import { NavbarAdmin ,ModalDeleteBlog} from "../../../components/index"
+import { getApiBlog,getApiDetailBlog,updateBlogApi ,deleteBlogApi} from "../../../service/blogApiService"
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { useSelector } from "react-redux";
 import { SelectUser } from "../../../redux/selector";
@@ -17,9 +17,20 @@ const BlogManage = ()=>{
     const [img,setImg] = useState()
     const [idBlog,setIdBlog] = useState("")
     const [previewImg,setPreviewImg] = useState("")
+    const [showModal,setShowModal]  =useState(false)
 
     useEffect(()=>{   //Lấy thông tin các blog
-        const getBlog = async()=>{
+        getBlog()
+    },[])
+    useEffect(()=>{   // gọi khi có blog đc select
+        setIsLoading(true)
+       if(idBlog!==""){
+        getDetailBlog()
+        setIsLoading(false)
+       }
+    },[idBlog])
+
+    const getBlog = async()=>{
             try {
                 const dt =await getApiBlog()
                  setDataBlog(dt.data)
@@ -27,17 +38,12 @@ const BlogManage = ()=>{
             } catch (error) {
                 console.error("Lỗi hiển thị Blog",error)
             }
-        }
-        getBlog()
-        
-    },[])
-    useEffect(()=>{   // gọi khi có blog đc select
-        setIsLoading(true)
-       if(idBlog!==""){
-         const getDetailBlog = async()=>{
+    }
+
+
+    const getDetailBlog = async()=>{
             try {
                 const dt =await getApiDetailBlog(idBlog)
-                console.log("getApiDetailBlog",dt.data)
                 setTitle(dt.data.title)
                 setDescription(dt.data.description)
                 setImg(dt.data.image)           //xét ảnh dùng để cập nhật
@@ -47,12 +53,8 @@ const BlogManage = ()=>{
             } catch (error) {
                 console.error("Lỗi hiển thị Blog",error)
             }
-        setIsLoading(false)
-
+            
         }
-        getDetailBlog()
-       }
-    },[idBlog])
 
     const handleFileChange = (e) => {
         
@@ -77,6 +79,7 @@ const BlogManage = ()=>{
                     "image" : img
                 }
                 const data = await updateBlogApi(blog,dataUser.accessToken)
+                getBlog()
                 showToast("Tạo blog thành công")
             } catch (error) {
                 console.error(error)
@@ -86,6 +89,22 @@ const BlogManage = ()=>{
         }
     }
     
+    const showConfirmDelete = ()=>{
+        if(idBlog ==="") {
+            showToast("Bạn phải chọn bài viết","error")
+        }
+        else{
+            setShowModal(true)
+        }
+    }
+
+    const handelResetInput = ()=>{  // Xóa dữ liệu trong các trường 
+        setTitle("")
+        setDescription("")
+        setIdBlog("")
+        setImg("")
+        setPreviewImg("")
+    }
     return (
         <div className="flex items-start relative">
             <NavbarAdmin/>
@@ -133,14 +152,29 @@ const BlogManage = ()=>{
                                 placeholder="Nhập mô tả sản phẩm..."
                            />
                        </div>
-                        <div onClick={handelUpdate} className="bg-blue-500 rounded-lg mt-5 hover:opacity-95 cursor-pointer">
-                            <p className="text-center text-white p-1">Lưu bài viết</p>
-                        </div>
+                       <div className="flex gap-1">
+                            <div onClick={handelUpdate} className="bg-blue-500 flex-1 rounded-lg mt-5 hover:opacity-95 cursor-pointer">
+                                <p className="text-center text-white p-1">Cập nhật bài viết</p>
+                            </div>
+                            <div onClick={showConfirmDelete} className="bg-red-500 flex-1 rounded-lg mt-5 hover:opacity-95 cursor-pointer">
+                                <p className="text-center text-white p-1">Xóa bài viết</p>
+                            </div>
+                       </div>
                      </div>
                    
               }
              
             </div>
+            {
+                showModal &&
+                 <ModalDeleteBlog
+                    idBlog = {idBlog}
+                    setShowModal= {setShowModal}
+                    getBlog = {getBlog}
+                    handelResetInput={handelResetInput}
+                    setIsLoading={setIsLoading}
+                 />
+            }
         </div>
     )
 }
