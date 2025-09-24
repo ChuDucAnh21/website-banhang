@@ -172,12 +172,12 @@ const Header = ({setShowLogin,setShowRegister})=>{
            </div>
            {/*  */}
             <div className='heading flex md:flex-nowrap flex-wrap items-center justify-around w-full lg:max-w-[1240px] '>
-                <Link to="/" className='logo-heading ml-2 mr-1 block w-[200px] md:w-[240px] md:inline'>
-                    <img src="/logo.png" alt="" className='w-[240px]'/>
+                <Link to="/" className='logo-heading ml-2 mr-1 block w-[160px] md:w-[240px] md:inline'>
+                    <img src="/logo.png" alt="" className='w-[160px] md:w-[240px]'/>
                 </Link>
                 <div className='flex flex-1 justify-around items-center'>
                     {/* input tìm kiếm */}
-                    <div className='relative search-heading w-[70%] md:w-[50%] lg:w-[40%] ml-2'>
+                    <div className='relative search-heading w-[70%] md:w-[50%] lg:w-[40%] min-w-[120px] ml-2'>
                         <input className='input-search' type="text" placeholder='Bạn cần tìm gì ?' value={textSearch} onChange={e=>setTextSearch(e.target.value)} />
                         <div className='icon-search flex justify-center items-center'>
                             <IoIosSearch className='w-full' />

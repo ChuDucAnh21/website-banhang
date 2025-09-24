@@ -1,5 +1,5 @@
 
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import FilterCategory from "./filterCategory/FilterCategory.jsx"
 import { getApiCategoryProduct } from "../../service/productApiService.jsx";
 
@@ -10,6 +10,7 @@ const FilterNavbar = (prop)=>{
     const [filterSize,setFilterSize] = useState([])
     const [filterPrice,setFilterPrice] =useState(300000)
     const [filterArrange,setFilterArrange] = useState("1")
+    const filterRef = useRef(null)
 
 
     useEffect(()=>{  //gọi API để lấy dữ tên các loại sp
@@ -42,8 +43,23 @@ const FilterNavbar = (prop)=>{
                           : 
                 setFilterSize([...filterSize,e.target.value])
     }
+
+     useEffect(() => {  // xử lý ấn ra ngoài icon giỏ hàng thì sẽ ẩn giỏ hàng đi
+        function handleClickOutside(event) {
+        // nếu click mà không nằm trong cartRef thì ẩn
+            if (filterRef.current && !filterRef.current.contains(event.target)) {
+                prop.setShowFilter(false)
+            }
+        }
+
+          document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
+
     return (
-        <div className={` block min-w-[16%] min-h-[800px] shadow-xl overflow-y-auto`}>
+        <div ref={filterRef} className={`${prop.showFilter?"block" :"hidden"} transition-opacity bg-red-100  md:block min-w-[16%] min-h-[800px] shadow-xl overflow-y-auto`}>
          
                 <p className="w-full text-center p-2 font-medium">Danh mục</p>
                 <FilterCategory   //Lọc theo loại sp
