@@ -5,6 +5,7 @@ import { getApiProduct } from "../../../service/productApiService.jsx"
 const CategoryProductPage = ({category})=>{
     const [data,setData] = useState([])
      const [loading,setLoading] = useState(true)
+     const [showFilter,setShowFilter] = useState(true)
      const [dataFilter,setDataFilter] = useState({
             category:[],
             size : [],
@@ -63,11 +64,15 @@ const CategoryProductPage = ({category})=>{
             <Breadcrumb nameCurrent = {category ? category : "Sản phẩm"}/>
             <div className="h-full flex">
                 <FilterNavbar
+                    showFilter={showFilter}
+                    setShowFilter={setShowFilter}
                     handelFilterChange={handelFilterChange}
                     name={category}
                 />
                 <div className="flex-1 pb-10">
                     <ListProduct
+                         showFilter={showFilter}
+                        setShowFilter={setShowFilter}
                         handelFilterChange={handelFilterChange}
                         dataFilter={dataFilter}
                         loading = {loading}

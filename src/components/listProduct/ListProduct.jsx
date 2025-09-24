@@ -3,6 +3,7 @@ import { memo, useEffect, useState, useTransition } from "react"
 import Product  from "../itemProduct/Product.jsx"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { BiFilterAlt } from "react-icons/bi";
 
 const ListProduct = (prop)=>{
     const [arrange,setArrange] = useState("1")
@@ -30,11 +31,17 @@ const ListProduct = (prop)=>{
                 </div>
                 
                 {/* lọc tăng/giảm theo giá */}
-                <select value={arrange} name="" id="" onChange={e=>setArrange(e.target.value)} className="border w-auto border-black rounded-md pt-1 pb-1 pl-7 pr-7">
+               <div className="w-[30%] lg:w-[20%] flex gap-2 items-center justify-end">
+                 <div  onClick={()=>prop.setShowFilter(!prop.showFilter)}  className=" md:hidden flex items-center cursor-pointer">
+                    <p>Lọc</p>
+                    <BiFilterAlt className="text-[30px] "/>
+                 </div>
+                 <select value={arrange} name="" id="" onChange={e=>setArrange(e.target.value)} className="hidden md:block  border w-full border-black rounded-md pt-1 pb-1 pl-7 pr-7">
                     <option value="1">Phổ biến</option>
                     <option value="2">Giá giảm dần</option>
                     <option value="3">Giá tăng dần</option>
-                </select>
+                 </select>
+               </div>
             </div>
             {
                 prop.loading? 

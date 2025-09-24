@@ -52,7 +52,7 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
     
     return (
         <div onClick={()=>setShowLogin(false)} className=" bg-[#a19a9a56] absolute top-0 bottom-0 left-0 right-0 z-20 flex justify-center">
-            <div onClick={(e)=>{e.stopPropagation()  }} className={ `${showLogin===true ? " show " : ""} modelLogin fixed shadow-xl rounded-lg w-[40%] min-h-[500px] bg-white m-auto mt-10 pl-3 pr-3`}>
+            <div onClick={(e)=>{e.stopPropagation()  }} className={ `${showLogin===true ? " show " : ""} modelLogin fixed shadow-xl rounded-lg w-[80%] lg:w-[40%] min-h-[500px] bg-white m-auto mt-10 pl-3 pr-3`}>
                   <h2 className=" text-center p-4 text-[30px] font-bold text-blue-700 uppercase">Đăng Nhập</h2>
                   <div className=" flex flex-col">
                         <span className="mt-3 mb-2 font-medium">Email / Số điện thoại</span>
@@ -69,7 +69,7 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
                   <div className="mt-[80px] flex justify-center">
                     <button onClick={handelLogin} className="bg-blue-600 w-[80%] m-auto text-white rounded-lg p-2">Đăng nhập</button>
                   </div>
-                  <div className="flex justify-around mt-10">
+                  <div className="flex flex-wrap justify-around mt-10">
                      <p>Quên mật khẩu</p>
                      <p>Bạn chưa có tài khoản ?
                         <span onClick={()=>{setShowRegister(true); setShowLogin(false) }} className="underline text-blue-400 cursor-pointer"> Đăng kí</span>
