@@ -35,7 +35,7 @@ const BlogPage = ()=>{
                     dataNoti.map(noti=>(
                         
                         <Link key={noti._id} to={generatePath("/detailBlog/:id",{id:noti._id})} className=" w-[400px] h-[280px] overflow-hidden rounded-lg shadow-xl">
-                            <img className="h-[90%] w-full" src={noti.image} alt="" />
+                            <img className="h-[90%] w-full object-cover" src={noti.image} alt="" />
                             <p className="text-center uppercase">{noti.title}</p>
                         </Link>
                 

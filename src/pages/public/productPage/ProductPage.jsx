@@ -5,7 +5,7 @@ import { getApiProduct } from "../../../service/productApiService.jsx"
 const CategoryProductPage = ({category})=>{
     const [data,setData] = useState([])
      const [loading,setLoading] = useState(true)
-     const [showFilter,setShowFilter] = useState(true)
+     const [showFilter,setShowFilter] = useState(false)
      const [dataFilter,setDataFilter] = useState({
             category:[],
             size : [],

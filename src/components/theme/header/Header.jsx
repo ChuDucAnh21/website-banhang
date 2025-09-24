@@ -64,9 +64,9 @@ const Header = ({setShowLogin,setShowRegister})=>{
       useEffect(() => {  // xử lý ấn ra ngoài icon giỏ hàng thì sẽ ẩn giỏ hàng đi
         function handleClickOutside(event) {
         // nếu click mà không nằm trong cartRef thì ẩn
-        if (cartRef.current && !cartRef.current.contains(event.target)) {
-            setShowCart(false)
-        }
+            if (cartRef.current && !cartRef.current.contains(event.target)) {
+                setShowCart(false)
+            }
         }
         function handleClickOutsideAccount(event) {
         // nếu click mà không nằm trong cartRef thì ẩn

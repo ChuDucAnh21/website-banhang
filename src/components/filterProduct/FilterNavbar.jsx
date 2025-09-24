@@ -59,7 +59,7 @@ const FilterNavbar = (prop)=>{
     }, [])
 
     return (
-        <div ref={filterRef} className={`${prop.showFilter?"block" :"hidden"} transition-opacity bg-red-100  md:block min-w-[16%] min-h-[800px] shadow-xl overflow-y-auto`}>
+        <div ref={filterRef} className={`${prop.showFilter?"block" :"hidden"} transition-opacity   md:block min-w-[6%] md:min-w-[16%] min-h-[800px] shadow-xl overflow-y-auto`}>
          
                 <p className="w-full text-center p-2 font-medium">Danh mục</p>
                 <FilterCategory   //Lọc theo loại sp
@@ -83,8 +83,8 @@ const FilterNavbar = (prop)=>{
                     <p className="font-medium">{filterPrice}đ</p>
                    </div>
                    <div className="flex flex-wrap items-center justify-end mr-3 mt-4 ">
-                    <p className="mr-2">Sắp xếp</p>
-                    <select value={filterArrange} name="" id="" className="outline-none rounded-md pl-2 pr-2 border border-solid border-[#ccc]" onChange={e=>setFilterArrange(e.target.value)}>
+                    <p className="mr-2 hidden md:block">Sắp xếp</p>
+                    <select value={filterArrange} name="" id="" className="outline-none rounded-md pl-2 pr-2 border w-[90%] border-solid border-[#ccc]" onChange={e=>setFilterArrange(e.target.value)}>
                         <option value="1">Mặc định</option>
                         <option value="2">Giảm dần</option>
                         <option value="3">Tăng dần</option>
