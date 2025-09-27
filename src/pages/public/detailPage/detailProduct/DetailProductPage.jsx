@@ -39,22 +39,7 @@ const DetailProductPage = ()=>{
     
     const { slug } = useParams(); // Lấy slug từ URL
      useEffect(()=>{ // gọi api lấy dữ liệu chi tiết sp
-        getApiDetailProduct(slug)
-            .then((dt)=>{
-                     setDataProduct(dt.data)
-                     setListSize(dt.data.allSizes)
-                     setQuantity(dt.data.stock)
-                    const colors = dt?.data?.options?.map(x=>x.color)
-                    const imgs = dt?.data?.options?.[0].images
-                    setListColor(colors)
-                    setListImg(imgs)
-                    setCurrentImg(imgs[0])
-                    setIsLoading(false)
-            })
-            .catch((err) => {
-                 console.error("Fetch error:", err);
-                }
-            );
+        getDetailDetail()
     },[slug])
 
     useEffect(()=>{ //hiển thị size theo màu sắc chọn
@@ -73,10 +58,23 @@ const DetailProductPage = ()=>{
        }
     },[colorSelect,sizeSelect])
 
-
-    // if(cartUser.status ==="loading"){
-    //      showToast("Đang thêm sản phẩm")
-    //   }
+    const getDetailDetail = async()=>{
+        try {
+            const dt = await getApiDetailProduct(slug)
+               setDataProduct(dt.data)
+               setListSize(dt.data.allSizes)
+               setQuantity(dt.data.stock)
+               const colors = dt?.data?.options?.map(x=>x.color)
+                const imgs = dt?.data?.options?.[0].images
+                setListColor(colors)
+                setListImg(imgs)
+                setCurrentImg(imgs[0])
+                setIsLoading(false)
+        } catch (error) {
+             console.error("getDetailDetail error:", error);
+        }
+    }
+   
                   
      
     const handelAddProductCart = async(data)=>{
@@ -186,12 +184,12 @@ const DetailProductPage = ()=>{
                                         <span className="font-medium">FST{dataProduct._id}VN</span>
                                     </div>
                                     <div>
-                                        <span className="ml-3">Tình trạng :</span>
+                                        <span className="ml-3 mr-3">Tình trạng :</span>
                                         <span className="font-medium" > Còn hàng</span>
                                     </div>
                                     <div>
-                                        <span className="ml-3">Thương hiệu : </span>
-                                        <span className="font-medium"> TORANO </span>
+                                        <span className="">Thương hiệu : </span>
+                                        <span className="font-medium"> {dataProduct.brand}</span>
                                     </div>
 
                                 </div>

@@ -17,11 +17,6 @@ export const getApiDetailBlog = async(id)=>{
         method :"GET"
     })
     return data
-    // return fetch(`/api/blog/${id}`)
-    //     .then(res=>{
-    //         if(!res.ok) throw new Error("Failed to fetch detail Blog")
-    //         return res.json()
-    //     })
 }
 export const createBlogApi = async(value,token)=>{
     const formData = new FormData();   

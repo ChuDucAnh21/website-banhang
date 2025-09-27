@@ -150,7 +150,7 @@ const OrderPage = ()=>{
                     <AiOutlineLoading3Quarters className="animate-spin text-center m-auto mt-60 text-[38px]  text-blue-500"/>
                 </div>
             }
-        <div className="min-h-[400px] p-4 w-[84%] m-auto">
+        <div className="min-h-[400px] lg:p-4 w-[84%] m-auto">
             <div className="flex flex-wrap-reverse">
                 <div className="flex-1 min-h-[300px] bg-white p-2">
                     <h2 className="text-[24px] font-bold   mb-2 ml-2 text-center text-blue-600">Thông tin đặt hàng</h2>
@@ -176,15 +176,15 @@ const OrderPage = ()=>{
                 </div>
                 <div className=" min-h-[400px]  flex-1">
                     {
-                        listProductCart.products.length === 0 ? <img src="/emptyCart.webp" className="w-[200px] m-auto"/> : ""
+                        listProductCart.products.length === 0 ? <img src="/emptyCart.webp" className="w-[50%] m-auto"/> : ""
                     }
-                        <ul className="flex-1 mr-3 mb-3 max-h-[300px] overflow-y-auto ">
+                        <ul className="flex-1 mr-3 mb-3 max-h-[300px] w-full overflow-y-auto ">
                             {
                                 listProductCart.products.map((product,index)=>(
                                     <li key={product.id+"-"+index} className=' mt-2 mb-3 min-w-[346px] min-h-[70px] pl-2 pr-1 border-b border-solid border-[#ddd] '>
                                         <Link to={generatePath("/detailProduct/:slug",{slug:product.slug||""})} className='flex items-center'>
                                             <img src={product.img} className='w-[60px] h-[60px] object-cover' alt="" />
-                                            <div className='flex items-center justify-between w-full text-[13px] pl-1 pr-1'>
+                                            <div className='flex flex-wrap items-center justify-between w-full text-[13px] pl-1 pr-1'>
                                                 <div>
                                                     <p className='text-[15px] font-medium'>{product.name}</p>
                                                 <div className='flex'>
@@ -216,7 +216,7 @@ const OrderPage = ()=>{
                             }
                             
                         </ul>
-                        <div className="pl-20 pr-20 flex flex-col">
+                        <div className="lg:pl-20 lg:pr-20 flex flex-col">
                             <div className="flex justify-between">
                                 <p className="w-[100px]">Tạm tính :</p>
                                 <p className="font-medium text-blue-600 text-[18px]">{listProductCart.total}đ</p>

@@ -106,7 +106,7 @@ const BlogManage = ()=>{
         setPreviewImg("")
     }
     return (
-        <div className="flex items-start relative">
+        <div className="flex flex-col sm:flex-row  items-start relative">
             <NavbarAdmin/>
             <div className="flex-1 p-3">
                 <div>

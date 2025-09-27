@@ -27,7 +27,7 @@ const ListProduct = (prop)=>{
             <div className="w-ful h-[46px] p-8  flex items-center justify-between ">
                 <div className="flex items-center">
                      <p className=" mr-2 hidden md:block">Bạn đang xem:</p>
-                    <h2 className="font-medium text-blue-500 w-[73px]">{prop.name}</h2>
+                    <h2 className="hidden md:block font-medium text-blue-500 w-[73px]">{prop.name}</h2>
                 </div>
                 
                 {/* lọc tăng/giảm theo giá */}
@@ -47,7 +47,7 @@ const ListProduct = (prop)=>{
                 prop.loading? 
                 <div className=" mt-10 w-full"><AiOutlineLoading3Quarters className="animate-spin text-center m-auto text-[28px] text-blue-500"/></div>
                  :
-                <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+                <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                     {
                       currentItems?.map((product)=>(
                         <div key={product._id}  className=" w-[100%]">

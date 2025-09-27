@@ -14,12 +14,7 @@ const FilterNavbar = (prop)=>{
 
 
     useEffect(()=>{  //gọi API để lấy dữ tên các loại sp
-        getApiCategoryProduct()
-            .then((dt)=>{
-                const categorys = dt.data.map(x=>x.categoryName)
-                const filterCategory = categorys.filter(x=>x.includes(prop.name))
-                setListCategory(filterCategory)
-            })
+      getCategoryProduct()
     },[prop.name])
 
     useEffect(()=>{   // run khi bất cứ filter nào thay đổi
@@ -30,6 +25,17 @@ const FilterNavbar = (prop)=>{
             arrange:filterArrange
         })
     },[filterCategory,filterSize,filterPrice,filterArrange])
+
+    const getCategoryProduct = async()=>{
+        try {
+            const dt = await getApiCategoryProduct()
+            const categorys = dt.data.map(x=>x.categoryName)
+            const filterCategory = categorys.filter(x=>x.includes(prop.name))
+            setListCategory(filterCategory)
+        } catch (error) {
+            console.error("Failed get category : ",error)
+        }
+    }
 
     const handelCatetory = (e)=>{  //Xử lý khi chọn loại sp
         filterCategory.includes(e.target.value) ?

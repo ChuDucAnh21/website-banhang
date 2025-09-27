@@ -24,9 +24,9 @@ const NavbarAdmin = ()=>{
     const [tabSelect,setTabSelect] = useState("/admin/dashboard")
     return (
         // <div className="w-[200px] h-svh bg-blue-100 ">
-            <div className='w-[20%] border-r-2 min-h-[600px]  '>
-                          <div className=' flex flex-col items-center h-full  bg-[#fff] '>
-                               <img src="/logo.png" alt="" className='ml-2 pt-2 pb-2 mr-9 block w-[40%] md:inline'/>
+            <div className='w-full sm:w-[30%] md:w-[20%] border-r-2 sm:min-h-[600px]'>
+                          <div className=' flex flex-row sm:flex-col items-center h-full  bg-[#fff] '>
+                               <img src="/logo.png" alt="" className='hidden  ml-2 pt-2 pb-2 mr-9 w-[40%] sm:inline'/>
                                <ul className='w-full'>
                                    {tabs.map((itemTab)=>(
                                        <li className={`${location.pathname === itemTab.href ? "bg-[#ffecec] text-red-500" : ""} w-full border-t border-b font-medium hover:text-[#ff0000] `} key={itemTab.id}  >

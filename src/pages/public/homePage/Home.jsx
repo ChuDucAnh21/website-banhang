@@ -38,17 +38,19 @@ const HomePage = ()=>{
    const [loading,setLoading] = useState(true)
 
     useEffect(()=>{
-            getApiProduct()
-                    .then((dt)=>{
-                        setDataProduct(dt.data)
-                        setLoading(false)
-                    })
-                    .catch((err) => {
-                        console.error("Fetch error 1:", err);
-                        setLoading(false);
-                    }
-                );
+           getProduct()
     },[])
+
+    const getProduct = async()=>{
+        setLoading(false)
+        try {
+            const dt = await getApiProduct()
+            setDataProduct(dt.data)
+        } catch (error) {
+             console.error("Fetch error:", error);
+        }
+        setLoading(false);
+    }
    
     return (
         <div className="min-h-[300px] w-[100%]">

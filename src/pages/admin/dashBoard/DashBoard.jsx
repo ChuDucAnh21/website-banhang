@@ -20,7 +20,7 @@ const tabs = [
 const DashBoardPage = ()=>{
     const navigate = useNavigate()
     return (
-        <div className="flex items-start relative">
+        <div className="flex flex-col sm:flex-row items-start relative">
             <NavbarAdmin/>
             <div className="flex items-start flex-1 flex-wrap gap-3 p-10 pr-[90px]">
                 {

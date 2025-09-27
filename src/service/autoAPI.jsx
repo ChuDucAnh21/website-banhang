@@ -1,8 +1,10 @@
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 export const apiFetch = async (url, options = {}) => {
+  console.log("API URL: ", API_URL);
   // gọi API bình thường
-  let res = await fetch(url, {
+  let res = await fetch(`${API_URL}${url}`, {
     ...options,
     //  credentials: "include", // để gửi cookie (accessToken, refreshToken)
   });
@@ -13,7 +15,7 @@ export const apiFetch = async (url, options = {}) => {
       console.warn("AccessToken expired → try refresh...");
 
       // gọi refresh token endpoint lấy accessToken mới
-      const dt = await fetch("/api/user/refreshAccessToken", {
+      const dt = await fetch(`${API_URL}/api/user/refreshAccessToken`, {
           method: "GET",
           credentials: "include",
       });
@@ -27,7 +29,7 @@ export const apiFetch = async (url, options = {}) => {
          //lưu accessToken mới vào localStorage để kiểm tra trong layout.jsx
         localStorage.setItem("accessToken", accessTokenNew);
         // thử lại request gốc với token mới
-        res = await fetch(url, {
+        res = await fetch(`${API_URL}${url}`, {
           ...options,
           headers:{
               "Content-Type": "application/json",
@@ -36,13 +38,9 @@ export const apiFetch = async (url, options = {}) => {
         });
         if(!res.ok) throw new Error("Lỗi : call Api failed ");
     } else {
-      try {
-        await fetch("/api/user/logout",{
-          method:"POST"
-        })
-      } catch (error) {
-        console.error("Logout failed->Please re-load page");
-      }
+      await fetch(`${API_URL}/api/user/logout`,{
+         method:"POST"
+      })
       console.error("Refresh failed → logout user");
       throw new Error("Unauthorized - Please login again");
     }
