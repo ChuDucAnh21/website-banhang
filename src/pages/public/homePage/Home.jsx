@@ -35,14 +35,14 @@ const listOufit = [
 
 const HomePage = ()=>{
     const [dataProduct,setDataProduct] = useState([])
-   const [loading,setLoading] = useState(true)
+   const [loading,setLoading] = useState(false)
 
     useEffect(()=>{
            getProduct()
     },[])
 
     const getProduct = async()=>{
-        setLoading(false)
+        setLoading(true)
         try {
             const dt = await getApiProduct()
             setDataProduct(dt.data)
