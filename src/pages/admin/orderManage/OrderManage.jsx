@@ -41,7 +41,7 @@ const OrderManage = ()=>{
         setShowModal(true)
     }
     return (
-        <div className="flex items-start relative">
+        <div className="flex flex-col sm:flex-row  items-start relative">
             <NavbarAdmin/>
              <div className="p-3 w-[80%] flex-1">
                 <div>

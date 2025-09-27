@@ -24,11 +24,16 @@ const ModalUpdateProduct = (prop)=>{
     const checkValid = {}
 
     useEffect(()=>{   //lấy danh sách "Danh mục"
-        getApiCategoryProduct()
-            .then((dt)=>{
-                setListCategory(dt.data)
-            })
+      getCategoryProduct()
     },[])
+    const getCategoryProduct = async()=>{
+        try {
+            const dt = await getApiCategoryProduct()
+            setListCategory(dt.data)
+        } catch (error) {
+            console.error("get category failed",error)
+        }
+    }
      const [options,setOptions] = useState(dataProduct.options)
      console.log("options",options)
      const handleAddOption = ()=>{

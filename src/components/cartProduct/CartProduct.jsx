@@ -49,7 +49,7 @@ const CartProduct = ({setShowCart}) => {
     
   }
   return (
-    <div className="cart-shopping shadow-2xl border-2 bg-white   min-w-[500px] min-h-[200px] max-h-[520px]  rounded-md absolute z-30 top-[100%] right-[-20px]">
+    <div className=" cart-shopping shadow-2xl border-2 bg-white  min-w-[300px] ms:min-w-[400px] md:min-w-[500px]  min-h-[200px] max-h-[520px] rounded-md absolute z-30 top-[100%] right-[-20px]">
       <div className="text-center p-3 uppercase font-medium  ">Giỏ hàng</div>
       <p className="pb-2 pl-3 border-b border-solid border-[#ccc] text-blue-600">
         Bạn đang có {listProductCart?.products?.length} sản phẩm{" "}
@@ -61,7 +61,7 @@ const CartProduct = ({setShowCart}) => {
       <ul className="list_p_cart-shopping mb-[100px] w-full overflow-y-auto max-h-[400px]">
         {
             listProductCart?.products.map((product,index)=>(
-                <li onClick={() => setShowCart(false)} key={product.id+"-"+index} className="bg-blue-50 mt-1 h-[70px] pl-1 pr-1 border border-solid border-[#ddd] ">
+                <li onClick={() => setShowCart(false)} key={product.id+"-"+index} className="bg-blue-50 mt-1 min-h-[70px] pl-1 pr-1 border border-solid border-[#ddd] ">
                     <Link
                         to={generatePath("/detailProduct/:slug", {
                              slug: product.slug || "",

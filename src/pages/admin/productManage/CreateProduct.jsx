@@ -30,12 +30,17 @@ const CreateProduct = ()=>{
         }
     ])
      useEffect(()=>{   //Lấy danh sách danh mục từ CSDL
-        getApiCategoryProduct()   
-            .then((dt)=>{
-                setListCategory(dt.data)
-            })
+       getCategoryProduct()
     },[])
 
+    const getCategoryProduct = async()=>{
+        try {
+            const dt = await getApiCategoryProduct()
+            setListCategory(dt.data)
+        } catch (error) {
+            console.error("get category failed",error)
+        }
+    }
 
     const handleAddOption = ()=>{
         if(options.length >= 4){
@@ -233,7 +238,7 @@ const CreateProduct = ()=>{
   
     
     return (
-        <div className="flex items-start relative ">
+        <div className="flex flex-col sm:flex-row  items-start relative ">
             <NavbarAdmin/>
             <div className="flex-1 border-l-2 min-h-[600px] mb-5">
                 <h2 className="bg-blue-50  text-center p-2 text-[20px] font-medium underline">Tạo sản phẩm mới</h2>

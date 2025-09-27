@@ -8,13 +8,21 @@ const SearchProduct  =(prop)=>{
     const [dataFiler,setDataFilter]  = useState([])
     
     useEffect(()=>{
-        getApiProduct()
-        .then((dt)=>{
-            let dataFilter = dt.data.filter(x=>x.title.includes(prop.textSearch))
-            setDataFilter(dataFilter)
-        })
+      getProduct()
 
     },[prop.textSearch])
+
+    const getProduct = async()=>{
+        try {
+            const dt = await getApiProduct()
+            let dataFilter = dt.data.filter(x=>x.title.includes(prop.textSearch))
+            setDataFilter(dataFilter)
+        } catch (error) {
+            console.error("error :",error)
+        }
+    }
+
+
     return (
         <div className="w-[150%] bg-white shadow-xl  absolute top-full z-30">
             <ul className={`${dataFiler.length ===0 ? "" : " border "} basis-[580px] max-h-[400px] overflow-y-auto`} >

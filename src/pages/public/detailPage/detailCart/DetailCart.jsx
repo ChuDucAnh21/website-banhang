@@ -101,21 +101,21 @@ const DetailCart = ()=>{
                      <AiOutlineLoading3Quarters className="animate-spin text-center m-auto mt-60 text-[38px]  text-blue-500"/>
                 </div>
               }
-            <div className="min-h-[400px] p-4 w-[84%] m-auto">
+            <div className="min-h-[400px] p-2 lg:p-4 lg:w-[84%] m-auto">
                 <div className="flex flex-wrap items-center border-b pb-3">
                     <h2 className="uppercase mr-2 text-[20px] font-medium">Chi tiết giỏ hàng</h2>
-                    <p>( bạn đang có <span className="font-bold text-blue-600">{listProductCart.products.length}</span> sản phẩm trong giỏ hàng )</p>
+                    <p>( bạn đang có <span className="font-bold text-blue-600">{listProductCart.products.length}</span> sản phẩm  )</p>
                 </div>
-                <div className="flex justify-between flex-wrap  mt-4">
+                <div className="flex justify-center  lg:justify-around flex-wrap  mt-4">
                     {
                         listProductCart.products.length === 0 ?
-                        <div className="min-w-[600px] flex justify-center"><img src="/emptyCart.webp" className="w-[250px] mb-2"/></div>
+                        <div className=" flex justify-center"><img src="/emptyCart.webp" className="w-[250px] mb-2 object-contain"/></div>
                         : 
                         //danh sach sản phẩm
-                        <ul className=" basis-[580px]  mr-3 mb-3 max-h-[400px] overflow-y-auto ">
+                        <ul className=" basis-[580px]  mr-3 mb-3 max-h-[300px] md:max-h-[400px] overflow-y-auto ">
                             {
                                 listProductCart.products.map((product,index)=>(
-                                <li key={product.id+"-"+index} className=' mt-1 min-w-[346px] h-[70px] pl-1 pr-1 border-b border-solid border-[#ddd] '>
+                                <li key={product.id+"-"+index} className=' mt-1 min-w-[346px] min-h-[70px] pl-1 pr-1 border-b border-solid border-[#ddd] '>
                                     <Link to={generatePath("/detailProduct/:slug",{slug:product.slug||""})} className='flex items-center'>
                                         <img src={product.img} className='w-[60px] h-[60px] object-cover' alt="" />
                                         <div className='flex items-center justify-between w-full text-[13px] pl-1 pr-1'>

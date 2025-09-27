@@ -1,26 +1,49 @@
 import { apiFetch } from "./autoAPI"
 
 export const getApiProduct = ()=>{
-   return fetch("/api/product")
-            .then((res)=>{
-                if(!res.ok) throw new Error("Failed to fetch products")
-                return res.json()
-            })
+   const data =  apiFetch("/api/product",{
+        method :"GET"
+   })
+   return data
 }
+
 export const getApiDetailProduct = (slug)=>{
-    return fetch(`/api/product/${slug}`)
-                .then(res=>{
-                    if(!res.ok) throw new Error("Failed to fetch products")
-                    return res.json()
-                })
+    const data =  apiFetch(`/api/product/${slug}`,{
+        method :"GET"
+    })
+    return data
 }
+
 export const getApiCategoryProduct = ()=>{
-    return fetch("/api/productCategory")
-                .then(res=>{
-                    if(!res.ok) throw new Error("Failed to fetch Category Product")
-                    return res.json()
-                })
+    const data =  apiFetch("/api/productCategory",{
+        method :"GET"
+    })
+    return data
 }
+
+// export const getApiProduct = ()=>{
+//    return fetch("/api/product")
+//             .then((res)=>{
+//                 if(!res.ok) throw new Error("Failed to fetch products")
+//                 return res.json()
+//             })
+// }
+
+
+// export const getApiDetailProduct = (slug)=>{
+//     return fetch(`/api/product/${slug}`)
+//                 .then(res=>{
+//                     if(!res.ok) throw new Error("Failed to fetch products")
+//                     return res.json()
+//                 })
+// }
+// export const getApiCategoryProduct = ()=>{
+//     return fetch("/api/productCategory")
+//                 .then(res=>{
+//                     if(!res.ok) throw new Error("Failed to fetch Category Product")
+//                     return res.json()
+//                 })
+// }
 
 export const createProductApi = async(token ,value)=>{   //Tạo mới 1 sp bởi ADMIN
     console.log("Value form Data", value)

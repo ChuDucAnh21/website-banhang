@@ -20,11 +20,11 @@ export const ToastProvider = ({ children }) => {
     <ToastContext.Provider value={{ showToast }}>
       {children}
       {/* Hiển thị toast */}
-      <div className="fixed top-1 min-w-[330px] pb-9 text-center right-5 space-y-2 z-50">
+      <div className="fixed top-1 min-w-[300px] pb-9 text-center right-5 space-y-2 z-50">
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`px-4 py-2 h-[80px] rounded flex items-center  text-white shadow ${
+            className={`px-4 py-2 h-[50px] md:h-[70px]  rounded flex items-center  text-white shadow ${
               toast.type === "success" ? "bg-green-500" : "bg-red-500"
             }`}
           >
