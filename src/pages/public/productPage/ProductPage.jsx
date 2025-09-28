@@ -15,12 +15,11 @@ const CategoryProductPage = ({category})=>{
 
     useEffect(()=>{
             getProductFilter()
-          
-    },[dataFilter,category])
-
-    const getProductFilter = async()=>{
-        if(!loading) setLoading(true)
-        try {
+        },[dataFilter,category])
+        
+        const getProductFilter = async()=>{
+            if(!loading) setLoading(true)
+                try {
             const dt  =  await getApiProduct()
              // Lọc theo Filter 
             let dataByShirt = dt.data.filter(x=>x.category.categoryName.includes(category)) //Lọc sản phẩm Loại Áo
