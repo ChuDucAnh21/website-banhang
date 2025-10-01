@@ -45,7 +45,7 @@ const Register = ({setShowRegister,showRegister,setShowLogin})=>{
       }
     return (
         <div onClick={()=>setShowRegister(false)} className=" bg-[#a19a9a56] absolute top-0 bottom-0 left-0 right-0 z-20 flex justify-center">
-            <div onClick={(e)=>{e.stopPropagation()  }} className={ `${showRegister===true ? " show " : ""} modelLogin fixed shadow-xl rounded-lg w-[90%] lg:w-[50%] min-h-[70%]  bg-white m-auto mt-10 pl-3 pr-3 pb-20`}>
+            <div onClick={(e)=>{e.stopPropagation()  }} className={ `${showRegister===true ? " show " : ""} modelLogin fixed shadow-xl rounded-lg w-[90%] lg:w-[50%] min-h-[80%] md:min-h-[50%]  bg-white m-auto mt-10 pl-3 pr-3 pb-20`}>
                   <h2 className=" text-center p-4 text-[30px] font-bold text-blue-700 uppercase">Đăng KÝ</h2>
                   <div className="flex flex-wrap">
                         <span className="mt-3 mb-2 font-medium min-w-[160px] ">Email :</span>

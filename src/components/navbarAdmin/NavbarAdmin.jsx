@@ -29,7 +29,7 @@ const NavbarAdmin = ()=>{
                                <img src="/logo.png" alt="" className='hidden  ml-2 pt-2 pb-2 mr-9 w-[40%] sm:inline'/>
                                <ul className=' w-full sm:w-full'>
                                    {tabs.map((itemTab)=>(
-                                       <li className={` ${location.pathname === itemTab.href ? "sm:bg-[#ffecec] text-red-500" : ""}  w-full border-t border-b font-medium hover:text-[#ff0000] `} key={itemTab.id}  >
+                                       <li className={` ${location.pathname === itemTab.href ? "sm:bg-[#ffecec] text-red-500" : ""}  w-full sm:border-t border-b font-medium hover:text-[#ff0000] `} key={itemTab.id}  >
                                            <Link  to={itemTab.href} 
                                                className='w-full flex items-center p-3 pl-6 ' 
                                                
