@@ -10,7 +10,7 @@ const Product = (prop)=>{
              <img 
                src={prop.img || "https://media.istockphoto.com/id/1392886556/vector/image-not-available-photo-coming-soon.jpg?s=170667a&w=0&k=20&c=hvhd43sMPAhtyfhIManqHBspHH6YOE_9ikIaLEdy7Bc=" }
                alt="" 
-               className="w-full h-[260px] object-contain lg:object-cover"
+               className="w-full h-[260px] object-cover lg:object-cover"
             />
            </div>
            <div className="pl-2 pr-2 relative flex-1  ">

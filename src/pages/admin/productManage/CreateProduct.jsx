@@ -19,7 +19,7 @@ const CreateProduct = ()=>{
     const [brand,setBrand]  = useState("")
     const [category,setCategory] = useState("")
     const [description,setDescription] = useState("")
-     const checkValid = {}
+     const [checkValid,setCheckValid] = useState({})
     
     const [options,setOptions] = useState([
         {
@@ -109,8 +109,6 @@ const CreateProduct = ()=>{
                 });
            });
     }
-    console.log("Option",options)
-    console.log("price",typeof price)
     const handleChangeQuantity = (id, size, value) => {
     //    if(value !== "" || Number(value) > 0){
             setOptions(prev => {
@@ -136,50 +134,54 @@ const CreateProduct = ()=>{
     //    }
     };
     const validateForm = ()=>{
+        const error = {}
         if(!title){
-            checkValid.title = "Title không được bỏ trống"
+            error.title = "Title không được bỏ trống"
         }
         if(!price){
-            checkValid.price = "Giá bán không được bỏ trống"
+            error.price = "Giá bán không được bỏ trống"
         }
         if(!category){
-            checkValid.category = "Danh mục không được bỏ trống"
+            error.category = "Danh mục không được bỏ trống"
         }
         if(!brand){
-            checkValid.brand = "Thương hiệu không được bỏ trống"
+            error.brand = "Thương hiệu không được bỏ trống"
         }
         if(!description.replace(/<[^>]+>/g, '')){
-             checkValid.brand = "Mô tả không được bỏ trống"
+             error.description = "Mô tả không được bỏ trống"
         }
         options.forEach(option=>{
             
             if(!option.color){
-               checkValid.description = "Màu không được bỏ trống"
+               error.color = "Màu không được bỏ trống"
            }
             if(option.sizeQuantity.length <=0){
-                checkValid.sizeQuantity = "Size không được bỏ trống"
+                error.sizeQuantity = "Size không được bỏ trống"
                 
             }
             if(option.sizeQuantity.length >=0){
                 option.sizeQuantity.forEach(op=>{
                     if(op.quantity <= 0) {
-                        checkValid.quantity = "Số lượng không nhỏ hơn 0"
+                        error.quantity = "Số lượng không nhỏ hơn 0"
                     }
                 })
             }
             if(option.images.length <=0){
-               checkValid.image = "Ảnh không được bỏ trống"
+               error.image = "Ảnh không được bỏ trống"
            }
            
         })
+        setCheckValid(error)
+        return error
+
     }
 
     const handleSubmit = async () => {
-        validateForm()
+       const error = validateForm()
 
-        if(  Object.keys(checkValid).length !== 0){
-            for (let key in checkValid) {
-                if (checkValid.hasOwnProperty(key)) {   // tránh kế thừa prototype
+        if(  Object.keys(error).length !== 0){
+            for (let key in error) {
+                if (error.error(key)) {   // tránh kế thừa prototype
                    showToast(checkValid[key],"error")
                 }
             }
@@ -251,15 +253,21 @@ const CreateProduct = ()=>{
                         <form action="" className="p-3 grid grid-cols-1 lg:grid-cols-2 gap-2" >
                             <div className="flex flex-col pb-2">
                                 <label htmlFor="name" className="font-medium">Tên sản phẩm</label>
-                                <input value={title} onChange={(e)=>setTitle(e.target.value)} id="name" className="border border-[#bbb] rounded-lg p-1 pl-3 forcus:outline outline-blue-500" type="text" placeholder="Tên sản phẩm" />
+                                    <p className="text-[12px] text-red-500">{checkValid.title}</p>
+                                <input value={title} onChange={(e)=>setTitle(e.target.value)} id="name" className={`border ${checkValid.title ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} type="text" placeholder="Tên sản phẩm" />
+
                             </div>
                             <div className="flex flex-col pb-2">
                                 <label htmlFor="price" className="font-medium">Giá sản phẩm</label>
-                                <input value={price} onChange={(e)=>setPrice(e.target.value)} id="price" className="border border-[#bbb] rounded-lg p-1 pl-3 forcus:outline outline-blue-500" type="number" placeholder="Giá sản phẩm" />
+                                <p className="text-[12px] text-red-500">{checkValid.price}</p>
+                                <input value={price} onChange={(e)=>setPrice(e.target.value)} id="price" className={`border ${checkValid.price ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} type="number" placeholder="Giá sản phẩm" />
+
                             </div>
+                            {/* Danh mục */}
                             <div className="flex flex-col  ">
                                 <label className="font-medium" htmlFor="">Danh mục</label>
-                                <select value={category} onChange={(e)=>setCategory(e.target.value)}  className="border border-[#bbb] rounded-lg p-1 pl-3 forcus:outline outline-blue-500" name="" id="">
+                                <p className="text-[12px] text-red-500">{checkValid.category}</p>
+                                <select value={category} onChange={(e)=>setCategory(e.target.value)}  className={`border ${checkValid.category ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} name="" id="">
                                     <option value={""} className="text-[#ccc]">Chọn</option>
                                     {
                                         listCategory.map((item,index)=>(
@@ -268,24 +276,29 @@ const CreateProduct = ()=>{
                                     }
                                 </select>
                             </div>
+                            {/* Thương hiệu */}
                             <div className="flex flex-col">
                                 <label className="font-medium" htmlFor="">Thương hiệu</label>
-                                <select value={brand} onChange={e=>setBrand(e.target.value)} className="border border-[#bbb] rounded-lg p-1 pl-3 forcus:outline outline-blue-500" name="" id="">
+                                <p className="text-[12px] text-red-500">{checkValid.brand}</p>
+                                <select value={brand} onChange={e=>setBrand(e.target.value)} className={`border  ${checkValid.brand ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} name="" id="">
                                     <option className="text-[#ccc]" value="">Chọn</option>
                                     <option value="Torano">Torano</option>
                                     <option value="Atino">Atino</option>
                                 </select>
+
                             </div>
                             
                         </form>
                         <div className="p-3">
                                 <label className="font-medium" htmlFor="">Nhập mô tả</label>
+                                <p className="text-[12px] text-red-500">{checkValid.description}</p>
                                 <ReactQuill 
                                     theme="snow" 
                                     value={description} 
                                     onChange={setDescription} 
                                     placeholder="Nhập mô tả sản phẩm..."
                                 />
+
                         </div>
                         <div className="p-3">
                         <div className="flex">
@@ -299,11 +312,14 @@ const CreateProduct = ()=>{
                                                 {/* màu sắc */}
                                                 <div className="flex">
                                                     <p className="font-medium mr-2">Màu sắc :</p>
-                                                    <input value={option.color} onChange={(e)=>handleChangeColor(option.id,e.target.value)} type="text" placeholder="màu sắc sản phẩm" className="border pl-2 rounded-md outline-blue-400" />
+                                                    <input value={option.color} onChange={(e)=>handleChangeColor(option.id,e.target.value)} type="text" placeholder="màu sắc sản phẩm" className={`border ${checkValid.color ? "border-red-500" : ""}  pl-2 rounded-md outline-blue-400`}/>
+                                                    
                                                 </div>
+                                                <p className="text-[12px] text-red-500">{checkValid.color}</p>
                                                 {/* size sản phẩm */}
                                                 <div className="mt-3">
                                                     <p className="font-medium mr-2">Kích thước & số lượng :</p>
+                                                    <p className="text-[12px] text-red-500">{checkValid.sizeQuantity}</p>
                                                     {/* <ul className="flex">
                                                         <li className="border-2 min-w-[30px] text-center">S</li>
                                                         <li className="ml-1 border-2 w-[30px] text-center">M</li>
@@ -336,6 +352,8 @@ const CreateProduct = ()=>{
                                                 <div className="mt-3">
                                                     <p className="font-medium">Ảnh sản phẩm</p>
                                                     <input multiple type="file" onChange={(e)=>handleChangeImage(option.id,e)}/>
+                                                    <p className="text-[12px] text-red-500">{checkValid.image}</p>
+
                                                 <div className="flex gap-2 flex-wrap mt-2">
                                                     {option.images.map((file, i) => (
                                                         <div className="relative">

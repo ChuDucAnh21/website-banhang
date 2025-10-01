@@ -75,16 +75,16 @@ const HomePage = ()=>{
                         :
                        <div className={`mt-5`}>
                            <Slider
-                                className = 'w-[80%] h-[416px] '
+                                className = 'w-[80%] h-[416px]'
                                 time = {5000}
                                 autoPlay = {true}
                                 slidesPerView = {4}
-                                spaceBetween={20}
+                                spaceBetween={1}
                                 pagination={true}
                             >
-                                { dataProduct?.map((product)=>(
+                                { dataProduct.slice(0,8)?.map((product)=>(
                                         <SwiperSlide key={product._id}>
-                                            <div className=" w-[240px]">
+                                            <div className=" w-[100%] md:w-[240px]">
                                                <Product
                                                  id = {product._id}
                                                  slug = {product.slug}

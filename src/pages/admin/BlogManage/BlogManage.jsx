@@ -66,26 +66,32 @@ const BlogManage = ()=>{
     };
 
     const handelUpdate  = async()=>{
-        if(title==="" || description==="" || img===""){
-            showToast("Bạn chưa chưa nhập đủ thông tin","error")
+        if(!idBlog){
+            showToast("Bạn cần chọn bài viết để sửa","error")
         }
         else{
-             setIsLoading(true)
-             try {
-                 const blog = {
-                    "id" : idBlog,
-                    "title" : title,
-                    "description" : description.replace(/<[^>]+>/g, ''),
-                    "image" : img
-                }
-                const data = await updateBlogApi(blog,dataUser.accessToken)
-                getBlog()
-                showToast("Tạo blog thành công")
-            } catch (error) {
-                console.error(error)
-                showToast("Tạo blog thất bại","error")
+
+            if(title==="" || description==="" || img===""){
+                showToast("Bạn chưa nhập đủ thông tin","error")
             }
-            setIsLoading(false)
+            else{
+                 setIsLoading(true)
+                 try {
+                     const blog = {
+                        "id" : idBlog,
+                        "title" : title,
+                        "description" : description.replace(/<[^>]+>/g, ''),
+                        "image" : img
+                    }
+                    const data = await updateBlogApi(blog,dataUser.accessToken)
+                    getBlog()
+                    showToast("Tạo blog thành công")
+                } catch (error) {
+                    console.error(error)
+                    showToast("Tạo blog thất bại","error")
+                }
+                setIsLoading(false)
+            }
         }
     }
     

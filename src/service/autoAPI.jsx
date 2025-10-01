@@ -2,13 +2,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 
 export const apiFetch = async (url, options = {}) => {
-  console.log("API URL: ", API_URL);
   // gọi API bình thường
   let res = await fetch(`${API_URL}${url}`, {
     ...options,
     //  credentials: "include", // để gửi cookie (accessToken, refreshToken)
   });
-   console.log("res.status",res.status)
   // Nếu accessToken hết hạn → 401
   if (res.status === 401) {
       console.log("lấy lại accessToken")

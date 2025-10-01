@@ -118,7 +118,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
 
            {/* nav MOBILE */}
            <div className={'containerNavbar  z-20 ' + `${ shownav ? "shownav" : ""}`} onClick={handelToggeNavbar}  >
-               <div onClick={(e) => e.stopPropagation()} className='menuNavbar shadow-xl flex flex-col items-center  w-[40%] h-svh bg-[#fff]  z-30 absolute top-0'>
+               <div onClick={(e) => e.stopPropagation()} className='menuNavbar shadow-xl flex flex-col items-center  w-[50%] md:w-[40%] h-svh bg-[#fff]  z-30 absolute top-0'>
                     <img src="/logo.png" alt="" className='ml-2 pt-2 pb-2 mr-9 block w-[70%] md:w-[40%] md:inline'/>
                     <ul className='w-full'>
                         {tabs.map((itemTab)=>(
@@ -151,7 +151,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
                                      dataUser.role ==="user"? 
                                      <li onClick={()=>{navigate("/history-buy"); setShownav(!shownav)}}  className='pt-2 pb-2 pl-6  hover:text-[#ff0000] hover:cursor-pointer'>Lịch sử mua hàng</li>
                                      :
-                                     <li onClick={()=>{navigate("/admin/dashboard"); setShownav(!shownav)}}  className='pt-2 pb-2 pl-6  hover:text-[#ff0000] hover:cursor-pointer '>Quản lý cửa hàng</li>
+                                     <li onClick={()=>{navigate("/admin/dashboard"); setShownav(!shownav)}}  className='pt-2 pb-3 pl-6  hover:text-[#ff0000] hover:cursor-pointer '>Quản lý cửa hàng</li>
 
                                    }
                                 </ul>
