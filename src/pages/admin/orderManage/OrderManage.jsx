@@ -75,7 +75,7 @@ const OrderManage = ()=>{
                                             <td className="border-y border-gray-300 px-4 py-2">{item.orderBy.userName}</td>
                                             <td className="border-y max-w-[90px] truncate border-gray-300 px-4 py-2">{item.orderBy.address}</td>
                                             <td className="border-y border-gray-300 px-4 py-2">{item.orderBy.phoneNumber}</td>
-                                            <td className="border-y border-gray-300 px-4 py-2 text-blue-600 font-medium">{item.initialTotalPrice}đ</td>
+                                            <td className="border-y border-gray-300 px-4 py-2 text-blue-600 font-medium">{item.totalPrice}đ</td>
                                             <td className={`${item.status==="Hủy" ? "text-red-600" :item.status==="Đang giao hàng" ? "text-green-500" : "text-yellow-500"} border-y border-gray-300 px-4 py-2`}>{item.status}</td>
                                             <td className="border-y  px-4 py-2">
                                                 <div onClick={()=>handelShowModalUpdate(item)} className="bg-blue-500 pl-3 min-w-[90px] pr-3 mr-2 text-white text-center rounded-lg cursor-pointer hover:opacity-95">Cập nhật</div>

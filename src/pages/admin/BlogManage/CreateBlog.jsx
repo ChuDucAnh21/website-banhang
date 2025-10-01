@@ -16,6 +16,7 @@ const CreateBlog= ()=>{
     const [previewImg,setPreviewImg] = useState("")
 
     const [isLoading,setIsLoading] = useState(false)
+    const [checkvalid,setCheckValid] = useState({})
 
      const handleFileChange = (e) => {
         
@@ -25,26 +26,45 @@ const CreateBlog= ()=>{
             setPreviewImg(URL.createObjectURL(file));  // chuyển dạng Object.file sang dạng URL để hiển thị
         }
     };
+     const validateForm = ()=>{
+        const error = {}
+        if(!title){
+            error.title = "Title không được bỏ trống"
+        }
+        if(!description.replace(/<[^>]+>/g, '')){
+             error.description = "Mô tả không được bỏ trống"
+        }
+       if(!img){
+            error.img = "Ảnh không được bỏ trống"
+        }
+        setCheckValid(error)
+        return error
+
+    }
+
 
     const handelSubmit = async()=>{
-        setIsLoading(true)
-        try {
-            const blog = {
-                "title" : title,
-                "description" : description.replace(/<[^>]+>/g, ''),
-                "image" : img
+        const error = validateForm()
+        if( Object.keys(error).length === 0){
+            setIsLoading(true)
+            try {
+                const blog = {
+                    "title" : title,
+                    "description" : description.replace(/<[^>]+>/g, ''),
+                    "image" : img
+                }
+                const data = await createBlogApi(blog,dataUser.accessToken)
+                setDescription("")
+                setImg("")
+                setPreviewImg("")
+                setTitle("")
+                showToast("Tạo blog thành công")
+            } catch (error) {
+                console.error(error)
+                showToast("Tạo blog thất bại","error")
             }
-            const data = await createBlogApi(blog,dataUser.accessToken)
-            setDescription("")
-            setImg("")
-            setPreviewImg("")
-            setTitle("")
-            showToast("Tạo blog thành công")
-        } catch (error) {
-            console.error(error)
-            showToast("Tạo blog thất bại","error")
+            setIsLoading(false)
         }
-        setIsLoading(false)
     }
     return (
         
@@ -60,16 +80,19 @@ const CreateBlog= ()=>{
                                 <form action="" className="grid grid-cols-1 mt-5" onSubmit={handelSubmit}>
                                     <div className="flex flex-col pb-2">
                                         <label htmlFor="title" className="font-medium">Tiêu đề</label>
-                                        <input value={title} onChange={(e)=>setTitle(e.target.value)}  id="title" className="border border-[#bbb] rounded-lg p-1 pl-3 forcus:outline outline-blue-500" type="text" placeholder="Tiêu đề" />
+                                          <p className="text-[12px] text-red-500">{checkvalid.title}</p>
+                                        <input value={title} onChange={(e)=>setTitle(e.target.value)}  id="title" className={`border   ${checkvalid.title ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} type="text" placeholder="Tiêu đề" />
                                     </div>
                                     <div className="flex flex-col pb-2">
                                         <label htmlFor="img" className="font-medium">Ảnh bìa</label>
-                                        <input  onChange={e=>handleFileChange(e)}  id="img" className="border border-[#bbb] rounded-lg p-1 pl-3 forcus:outline outline-blue-500" type="file" placeholder="Ảnh" />
+                                          <p className="text-[12px] text-red-500">{checkvalid.img}</p>
+                                        <input  onChange={e=>handleFileChange(e)}  id="img" className={`border   ${checkvalid.img ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} type="file" placeholder="Ảnh" />
                                         {previewImg && <img className="w-[100px]" src={previewImg} alt="" />}
                                     </div>
                                 </form>
                                     <div className="min-h-[100px]">
                                         <label className="font-medium" htmlFor="">Nhập mô tả</label>
+                                        <p className="text-[12px] text-red-500">{checkvalid.description}</p>
                                         <ReactQuill 
                                             theme="snow" 
                                             value={description} 
