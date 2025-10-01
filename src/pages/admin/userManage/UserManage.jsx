@@ -55,7 +55,7 @@ const UserManage = ()=>{
     return (
         <div className="flex flex-col sm:flex-row  items-start relative">
             <NavbarAdmin/>
-            <div className="p-3 w-[80%] flex flex-col">
+            <div className="p-3 w-full  sm:w-[80%] flex flex-col">
                 <div>
                     <h2 className="bg-blue-50  text-center p-2 text-[20px] mb-2 font-medium underline">Quản lý người dùng</h2>
                 </div>
