@@ -70,7 +70,7 @@ const CreateBlog= ()=>{
         
           <div className="flex flex-col sm:flex-row  items-start relative ">
                     <NavbarAdmin/>
-                    <div className="flex-1 border-l-2 min-h-[600px] p-3 ">
+                    <div className="w-full border-l-2 min-h-[600px] p-3 ">
                         <h2 className="bg-blue-50  text-center p-2 text-[20px] font-medium underline">Tạo bài viết mới</h2>
                         {
                             isLoading ? 

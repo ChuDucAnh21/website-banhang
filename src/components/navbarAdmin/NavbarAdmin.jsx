@@ -9,7 +9,7 @@ import { AiFillFolderAdd } from "react-icons/ai";
 import "./style.scss"
 import { useState } from "react";
 const tabs = [
-    { id: "1", namePage: "Trang chủ", icon: <IoMdHome />, href: "/admin/dashboard" },
+    { id: "1", namePage: "Dashboard", icon: <IoMdHome />, href: "/admin/dashboard" },
     { id: "2", namePage: "Tạo Sản phẩm", icon: <BiLogoProductHunt />, href: "/admin/createProduct" },
     { id: "3", namePage: "Quản lý sản phẩm", icon: <AiFillShopping />, href: "/admin/productManager" },
     { id: "4", namePage: "Quản lý đơn hàng", icon: <MdLocalShipping />, href: "/admin/orderManager" },
@@ -24,14 +24,14 @@ const NavbarAdmin = ()=>{
     const [tabSelect,setTabSelect] = useState("/admin/dashboard")
     return (
         // <div className="w-[200px] h-svh bg-blue-100 ">
-            <div className='w-full sm:w-[30%] md:w-[20%] border-r-2 sm:min-h-[600px]'>
+            <div className='w-[150px] sm:w-[30%] md:w-[20%] sm:border-r-2 max-h-[46px] overflow-hidden sm:max-h-full sm:min-h-[600px]'>
                           <div className=' flex flex-row sm:flex-col items-center h-full  bg-[#fff] '>
                                <img src="/logo.png" alt="" className='hidden  ml-2 pt-2 pb-2 mr-9 w-[40%] sm:inline'/>
-                               <ul className='w-full'>
+                               <ul className=' w-full sm:w-full'>
                                    {tabs.map((itemTab)=>(
-                                       <li className={`${location.pathname === itemTab.href ? "bg-[#ffecec] text-red-500" : ""} w-full border-t border-b font-medium hover:text-[#ff0000] `} key={itemTab.id}  >
+                                       <li className={` ${location.pathname === itemTab.href ? "sm:bg-[#ffecec] text-red-500" : ""}  w-full border-t border-b font-medium hover:text-[#ff0000] `} key={itemTab.id}  >
                                            <Link  to={itemTab.href} 
-                                               className='w-full flex items-center p-3 pl-6' 
+                                               className='w-full flex items-center p-3 pl-6 ' 
                                                
                                            >
                                                    <span className='mr-2 relative top-[0.9px] text-[18px]'> {itemTab.icon}</span>

@@ -43,7 +43,7 @@ const OrderManage = ()=>{
     return (
         <div className="flex flex-col sm:flex-row  items-start relative">
             <NavbarAdmin/>
-             <div className="p-3 w-[80%] flex-1">
+             <div className="p-3 w-full  sm:w-[80%] flex-1">
                 <div>
                     <h2 className="bg-blue-50  text-center p-2 text-[20px] mb-2 font-medium underline">Quản lý đơn hàng</h2>
                 </div>
