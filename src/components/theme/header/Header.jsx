@@ -1,6 +1,6 @@
 import './style.scss'
 import { IoIosSearch } from "react-icons/io";
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
 import { generatePath, Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaPhone } from "react-icons/fa6";
 import { LuLogIn } from "react-icons/lu";
@@ -42,6 +42,8 @@ const Header = ({setShowLogin,setShowRegister})=>{
     const [showCart,setShowCart] = useState(false)
     const [showAccout,setShowAccout]  =useState(false)
     const [textSearch,setTextSearch] = useState("")
+    const [text,setText] = useState("")
+    const [isPending,startTransition] = useTransition()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const dataUser = useSelector(SelectUser)
@@ -112,6 +114,20 @@ const Header = ({setShowLogin,setShowRegister})=>{
             showToast("Đăng xuất thất bại")
         }
     }
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+             setTextSearch(text) // chỉ update sau 1 lúc user ngừng gõ
+        }, 1000)
+
+        // clear timeout nếu user gõ tiếp
+        return () => clearTimeout(handler)
+    }, [text])
+
+    const handelSearch = (value)=>{
+        setText(value)
+    }
+    
     
     return(
        <div className='header-page z-10 pt-1 pb-2 bg-white sticky top-0 left-0 w-full'>
@@ -178,11 +194,11 @@ const Header = ({setShowLogin,setShowRegister})=>{
                 <div className='flex flex-1  justify-around items-center'>
                     {/* input tìm kiếm */}
                     <div className='relative search-heading w-[70%] md:w-[50%] lg:w-[40%] min-w-[190px] ml-2'>
-                        <input className='input-search' type="text" placeholder='Bạn cần tìm gì ?' value={textSearch} onChange={e=>setTextSearch(e.target.value)} />
+                        <input className='input-search' type="text" placeholder='Bạn cần tìm gì ?' value={text} onChange={e=>handelSearch(e.target.value)} />
                         <div className='icon-search flex justify-center items-center'>
                             <IoIosSearch className='w-full' />
                         </div>
-                        {textSearch!=="" && <SearchProduct setTextSearch={setTextSearch}  textSearch = {textSearch}/>}
+                        {textSearch!== "" && <SearchProduct setTextSearch={setTextSearch}  textSearch = {textSearch}/>}
                     </div>
                     {/* liên hệ  */}
                     <div className='contact-heading items-center hidden lg:flex'>
