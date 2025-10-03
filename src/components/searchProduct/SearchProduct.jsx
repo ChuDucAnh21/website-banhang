@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { memo, useCallback, useEffect, useState, useTransition } from "react"
 import { getApiProduct } from "../../service/productApiService"
 import { generatePath, Link } from "react-router-dom"
 import { MdDeleteOutline } from "react-icons/md"
@@ -6,17 +6,22 @@ import { MdDeleteOutline } from "react-icons/md"
 
 const SearchProduct  =(prop)=>{
     const [dataFiler,setDataFilter]  = useState([])
+    const [isPending,startTransition] = useTransition()
+
+    
     
     useEffect(()=>{
-      getProduct()
+        getProduct()
 
     },[prop.textSearch])
 
-    const getProduct = async()=>{
+    const getProduct =async()=>{
         try {
             const dt = await getApiProduct()
-            let dataFilter = dt.data.filter(x=>x.title.includes(prop.textSearch))
-            setDataFilter(dataFilter)
+            startTransition(()=>{
+                let dataFilter = dt.data.filter(x=>x.title.includes(prop.textSearch))
+                setDataFilter(dataFilter)
+            })
         } catch (error) {
             console.error("error :",error)
         }
@@ -50,4 +55,4 @@ const SearchProduct  =(prop)=>{
         </div>
     )
 }
-export default SearchProduct
+export default memo(SearchProduct)
