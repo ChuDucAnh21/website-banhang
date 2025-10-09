@@ -62,13 +62,13 @@ const ListProduct = (prop)=>{
                                 />
                         </div>
                     ))}
+                </div>
+            }
                     <div className="flex justify-end mt-3 ">
                                 <button    disabled={currentPage === 1}  onClick={() => setCurrentPage((p) => p - 1)} className="bg-[#ddd] w-[30px] border h-[30px] flex items-center justify-center"><MdKeyboardDoubleArrowLeft/></button>
                                 <p className="border">Trang {currentPage}/{totalPages}</p>
                                  <button  disabled={currentPage === totalPages} onClick={() => setCurrentPage((p) => p + 1)} className="bg-[#ddd] w-[30px] border h-[30px] flex items-center justify-center"><MdKeyboardDoubleArrowRight/></button>
                     </div>                    
-                </div>
-            }
         </div>
     )
 }
