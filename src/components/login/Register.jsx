@@ -45,34 +45,34 @@ const Register = ({setShowRegister,showRegister,setShowLogin})=>{
       }
     return (
         <div onClick={()=>setShowRegister(false)} className=" bg-[#a19a9a56] absolute top-0 bottom-0 left-0 right-0 z-20 flex justify-center">
-            <div onClick={(e)=>{e.stopPropagation()  }} className={ `${showRegister===true ? " show " : ""} modelLogin fixed shadow-xl rounded-lg w-[90%] lg:w-[50%] min-h-[80%] md:min-h-[50%]  bg-white m-auto mt-10 pl-3 pr-3 pb-20`}>
+            <div onClick={(e)=>{e.stopPropagation()  }} className={ `${showRegister===true ? " show " : ""} modelLogin fixed shadow-xl rounded-lg w-[90%] lg:w-[50%] min-h-[95%] md:min-h-[70%]  bg-white m-auto mt-2 mb-1 md:mt-10 pl-3 pr-3 pb-20`}>
                   <h2 className=" text-center p-4 text-[30px] font-bold text-blue-700 uppercase">Đăng KÝ</h2>
                   <div className="flex flex-wrap">
-                        <span className="mt-3 mb-2 font-medium min-w-[160px] ">Email :</span>
+                        <span className="mt-2 mb-1 font-medium min-w-[160px] ">Email :</span>
                         <input value={email || ""} onChange={(e)=>setEmail(e.target.value)} className={ `${validate.email ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 min-w-[300px] border border-solid `} type="email" placeholder="Email"  />
 
                   </div>
                   <p className="text-[12px] text-red-500">{validate.email}</p>
                   <div className=" flex flex-wrap mt-2">
-                        <span className="mt-3 mb-2 font-medium min-w-[160px]">Số điện thoại :</span>
+                        <span className="mt-2 mb-1 font-medium min-w-[160px]">Số điện thoại :</span>
                         <input value={phoneNumber || ""} onChange={(e)=>setPhoneNumber(e.target.value)} className={ `${validate.phone ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 min-w-[300px] border border-solid `} type="text" placeholder="Số điện thoại"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.phone}</p>
 
                   <div className=" flex flex-wrap mt-2">
-                        <span className="mt-3 mb-2 font-medium min-w-[160px]">Họ và tên :</span>
+                        <span className="mt-2 mb-1 font-medium min-w-[160px]">Họ và tên :</span>
                         <input autoComplete="new-password" value={userName|| ""} onChange={(e)=>setUserName(e.target.value)} className={ `${validate.name ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-1 pb-1 pl-3 rounded-lg flex-1 min-w-[300px] border border-solid `} type="text" placeholder="Họ và tên"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.name}</p>
 
                   <div className=" flex flex-wrap items-center mt-2">
-                        <span className="mb-2 font-medium min-w-[160px]">Mật khẩu :</span>
+                        <span className="mb-1 font-medium min-w-[160px]">Mật khẩu :</span>
                         <input autoComplete="new-password" value={password|| ""} onChange={(e)=>setPassword(e.target.value)} className={ `${validate.password ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-2 pb-2 pl-3 rounded-lg flex-1 min-w-[300px] border border-solid `} type="password" placeholder="Mật khẩu"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.password}</p>
 
                   <div className=" flex flex-wrap items-center mt-2">
-                        <span className="mb-2 font-medium min-w-[160px]">Nhập lại mật khẩu :</span>
+                        <span className="mb-1 font-medium min-w-[160px]">Nhập lại mật khẩu :</span>
                         <input value={confirmPassword ||""}  onChange={(e)=> setConfirmPassword(e.target.value)} className={ `${validate.confirmPassword ? "outline-red-500 border-red-500 " : "outline-blue-400 border-[#ccc]" } pt-2 pb-2 pl-3 rounded-lg flex-1 min-w-[300px] border border-solid `} type="password" placeholder="Nhập lại mật khẩu"  />
                   </div>
                   <p className="text-[12px] text-red-500">{validate.confirmPassword}</p>

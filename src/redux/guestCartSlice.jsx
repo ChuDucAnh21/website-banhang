@@ -15,7 +15,6 @@ const guestCartSlice = createSlice({
             ))
             if(existingProduct){
                 state.products.find(product=>product.id===action.payload.id).quantity += action.payload.quantity
-                
             }
             else{
                 state.products.push(action.payload)

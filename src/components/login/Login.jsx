@@ -56,13 +56,13 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
                   <h2 className=" text-center p-4 text-[30px] font-bold text-blue-700 uppercase">Đăng Nhập</h2>
                   <div className=" flex flex-col">
                         <span className="mt-3 mb-2 font-medium">Email / Số điện thoại</span>
-                        <input value={email || ""} onChange={e=>setEmail(e.target.value)} className="outline-blue-400 pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid border-[#ccc]" type="text" placeholder="abc@gmail.com"/>
+                        <input value={email || ""} autoComplete="new-password" onChange={e=>setEmail(e.target.value)} className={`${validate.email ? "outline-red-500 border-red-500" : "outline-blue-400  border-[#ccc]"}  pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="text" placeholder="abc@gmail.com"/>
                   </div>
                   <p className="text-[12px] text-red-500">{validate.email}</p>
 
                   <div className="mt-3 pt-0 flex flex-col">
                         <span className="mb-2 font-medium">Mật khẩu</span>
-                        <input value={password || ""} onChange={e=>setPassWord(e.target.value)} className="outline-blue-400 pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid border-[#ccc]" type="password" placeholder="Điền tại đây"/>
+                        <input value={password || ""} autoComplete="new-password" onChange={e=>setPassWord(e.target.value)} className={`${validate.password ? "outline-red-500 border-red-500" : "outline-blue-400 border-[#ccc]"} pt-1 pb-1 pl-3 rounded-lg flex-1 border border-solid `} type="password" placeholder="Mật khẩu"/>
                   </div>
                   <p className="text-[12px] text-red-500">{validate.password}</p>
 

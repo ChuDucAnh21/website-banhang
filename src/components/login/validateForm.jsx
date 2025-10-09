@@ -26,6 +26,7 @@ export function validateForm(data,status) {
   // Password
 //   const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   if (!data.password) errors.password = "Vui lòng nhập mật khẩu";
+  if (!data.confirmPassword) errors.confirmPassword = "Vui lòng xác nhận mật khẩu";
 //   else if (!passRegex.test(password)) {
 //     errors.password =
 //       "Mật khẩu phải ≥ 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt";
