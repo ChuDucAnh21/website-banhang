@@ -6,11 +6,6 @@ export const getApiBlog = async()=>{
     })
     return data
 
-    // return fetch("/api/blog")
-    //     .then(res=>{
-    //         if(!res.ok) throw new Error("Failed to fetch Blog")
-    //         return res.json()
-    //     })
 }
 export const getApiDetailBlog = async(id)=>{
     const data = await apiFetch(`/api/blog/${id}`,{

@@ -36,11 +36,11 @@ export const apiFetch = async (url, options = {}) => {
         });
         if(!res.ok) throw new Error("Lỗi : call Api failed ");
     } else {
+      console.error("Refresh failed → logout user");
       await fetch(`${API_URL}/api/user/logout`,{
          method:"POST"
       })
-      console.error("Refresh failed → logout user");
-      throw new Error("Unauthorized - Please login again");
+      window.location.href = "/login";
     }
   }
   const contentType = res.headers.get("content-type");

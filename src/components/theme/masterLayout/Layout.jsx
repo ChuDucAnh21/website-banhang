@@ -24,7 +24,7 @@ const Layout = ()=>{
         <div className="relative ">
             <Header setShowLogin = {setShowLogin} setShowRegister={setShowRegister}/>
             <Outlet/>     
-            <Footer/>
+            <Footer/> 
             {showLogin && <LoginModel showLogin={showLogin} setShowLogin = {setShowLogin} setShowRegister = {setShowRegister}/>}
             {showRegister && <Register showRegister={showRegister} setShowRegister = {setShowRegister} setShowLogin = {setShowLogin}/>}
         </div>
