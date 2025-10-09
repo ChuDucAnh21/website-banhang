@@ -14,7 +14,7 @@ export function validateForm(data,status) {
       const nameRegex = /^[A-Za-zÀ-ỹ\s]{2,}$/; // cho phép tiếng Việt có dấu
       if (!data.name) errors.name = "Vui lòng nhập họ và tên";
       else if (!nameRegex.test(data.name)) errors.name = "Tên không hợp lệ";
-
+      if (!data.confirmPassword) errors.confirmPassword = "Vui lòng xác nhận mật khẩu";
   }
   // Email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,7 +26,7 @@ export function validateForm(data,status) {
   // Password
 //   const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   if (!data.password) errors.password = "Vui lòng nhập mật khẩu";
-  if (!data.confirmPassword) errors.confirmPassword = "Vui lòng xác nhận mật khẩu";
+ 
 //   else if (!passRegex.test(password)) {
 //     errors.password =
 //       "Mật khẩu phải ≥ 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt";
