@@ -26,8 +26,8 @@ const OrderPage = ()=>{
     const dispatch = useDispatch()
     const listProductCart =dataUser.role==="user" || dataUser.role==="admin" ?useSelector(SelectUserCart) : useSelector(SelectGuestCart)
      const handelQuatity = async(e,data)=>{
-        e.stopPropagation()
-        e.preventDefault()
+        e.stopPropagation()  //ngăn chặn sự kiện nổi bọt
+        e.preventDefault()   //ngăn chặn hành vi mặc định của thẻ
         
         try {
             if(dataUser.role === "admin" || dataUser.role==="user"){
@@ -44,7 +44,7 @@ const OrderPage = ()=>{
                                     "price": data.price,
                                 },
                           token : dataUser.accessToken
-                    })).unwrap()
+                    })).unwrap()// unwrap để bắt lỗi trong thunk
                     showToast("Cập nhật sản phẩm thành công")
                 }else{
                     showToast("Số lượng sản phẩm đã là nhỏ nhất","error")

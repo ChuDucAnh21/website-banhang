@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
   <>
   <ToastProvider>
      <Provider store={store}>
-       <PersistGate persistor={persistor} >
+       <PersistGate persistor={persistor} > 
          <RouterProvider router={router}/>
        </PersistGate>
      </Provider>

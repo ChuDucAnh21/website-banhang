@@ -29,11 +29,11 @@ const Slider = (prop) => {
                     spaceBetween: 10
                 },
                 640: {  // tablet nhỏ
-                    slidesPerView: 2,
+                    slidesPerView: prop.slidesPerView || 2,
                     spaceBetween: 15
                 },
                 1024: { // tablet lớn / desktop
-                    slidesPerView: 3,
+                    slidesPerView:prop.slidesPerView || 3,
                     spaceBetween: 20
                 },
                 1280: { // màn hình rộng

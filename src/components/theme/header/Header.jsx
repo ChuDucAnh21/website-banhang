@@ -191,7 +191,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
                 <Link to="/" className='logo-heading ml-2 mr-1 block w-[180px] md:w-[240px] md:inline'>
                     <img src="/logo.png" alt="" className='w-[160px] md:w-[240px]'/>
                 </Link>
-                <div className='flex flex-1  justify-around items-center'>
+                <div className='flex flex-1 justify-around items-center'>
                     {/* input tìm kiếm */}
                     <div className='relative search-heading w-[70%] md:w-[50%] lg:w-[40%] min-w-[190px] ml-2'>
                         <input className='input-search' type="text" placeholder='Bạn cần tìm gì ?' value={text} onChange={e=>handelSearch(e.target.value)} />

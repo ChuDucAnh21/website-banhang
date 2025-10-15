@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const authSlice = createSlice({
+const authSlice = createSlice({  //kết hợp action và reducer trong 1 nơi
     name :"user",
-    initialState:{
+    initialState:{ 
         isLoggedIn:false,
         accessToken : null,
         userInfor : {},
         role:null
     },
-    reducers:{
+    reducers:{  // nơi viết các action xử lý các thao tác đồng bộ
         loginSuccess: (state, action) => {
             state.isLoggedIn = true;
             state.accessToken = action.payload.accessToken;
@@ -29,5 +29,5 @@ const authSlice = createSlice({
         }
     }
 })
-export const {setAccessToken}  = authSlice.actions
-export default authSlice
+export const {setAccessToken}  = authSlice.actions 
+export default authSlice 

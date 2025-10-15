@@ -13,11 +13,11 @@ const persistConfigUser = {
   key: 'user',        // key lưu trong storage
   storage,            // nơi lưu (localStorage)
 };
-const persistedCartReducer = persistReducer(persistConfigCart, guestCartSlice.reducer);
+const persistedCartReducer = persistReducer(persistConfigCart, guestCartSlice.reducer); // tạo 1 reducer mới có khả năng lưu vào storage
 const persistedUsertReducer = persistReducer(persistConfigUser, authSlice.reducer);
 
-const store = configureStore({
-    reducer :{
+const store = configureStore({  
+    reducer :{  // các state con được quản lý bởi các slice khác nhau 
       auth : persistedUsertReducer,
       guestCart : persistedCartReducer,
       userCart :userCartSlice.reducer
@@ -30,5 +30,5 @@ const store = configureStore({
         }),
 
 })
-export const persistor = persistStore(store);
+export const persistor = persistStore(store);  // tạo persistor để kết nối store với storage 
 export default store

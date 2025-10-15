@@ -27,7 +27,7 @@ const CartProduct = ({setShowCart}) => {
                     size:data.size
             },
             "token" : dataUser.accessToken
-          })).unwrap()
+          })).unwrap()  // unwrap để bắt lỗi trong thunk
          if(dataUserCart.status ==="loading"){
             showToast("Đang xóa sản phẩm")
           }
@@ -49,7 +49,7 @@ const CartProduct = ({setShowCart}) => {
     
   }
   return (
-    <div className=" cart-shopping shadow-2xl border-2 bg-white  min-w-[300px] ms:min-w-[400px] md:min-w-[500px]  min-h-[200px] max-h-[520px] rounded-md absolute z-30 top-[100%] right-[-20px]">
+    <div className="cart-shopping shadow-2xl border-2 bg-white  min-w-[300px] ms:min-w-[400px] md:min-w-[500px]  min-h-[200px] max-h-[520px] rounded-md absolute z-30 top-[100%] right-[-20px]">
       <div className="text-center p-3 uppercase font-medium  ">Giỏ hàng</div>
       <p className="pb-2 pl-3 border-b border-solid border-[#ccc] text-blue-600">
         Bạn đang có {listProductCart?.products?.length} sản phẩm{" "}
