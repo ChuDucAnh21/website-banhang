@@ -264,7 +264,7 @@ const CreateProduct = ()=>{
 
                             </div>
                             {/* Danh mục */}
-                            <div className="flex flex-col  ">
+                            <div className="flex flex-col">
                                 <label className="font-medium" htmlFor="">Danh mục</label>
                                 <p className="text-[12px] text-red-500">{checkValid.category}</p>
                                 <select value={category} onChange={(e)=>setCategory(e.target.value)}  className={`border ${checkValid.category ? "border-red-500" : " border-[#bbb]"} rounded-lg p-1 pl-3 forcus:outline outline-blue-500`} name="" id="">

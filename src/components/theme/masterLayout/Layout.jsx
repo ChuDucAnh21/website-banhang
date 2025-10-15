@@ -11,12 +11,13 @@ const Layout = ()=>{
     const location = useLocation()
     const dispatch = useDispatch()
     const dataUser = useSelector(SelectUser)
-    useEffect(()=>{
+    useEffect(()=>{  // cập nhật lại accessToken khi F5
         const tokenLocal = localStorage.getItem("accessToken")  //lấy accessToken trong localStorage
         if(tokenLocal !== dataUser.accessToken){   //kiểm tra accessToken trong localStorage và trong store Redux
             dispatch(authSlice.actions.setAccessToken(tokenLocal))   //set lại trong store
         } 
     },[location])
+    
     const [showLogin,setShowLogin] = useState(false)
     const [showRegister,setShowRegister] = useState(false)
     return (

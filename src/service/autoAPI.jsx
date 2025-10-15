@@ -15,7 +15,7 @@ export const apiFetch = async (url, options = {}) => {
       // gọi refresh token endpoint lấy accessToken mới
       const dt = await fetch(`${API_URL}/api/user/refreshAccessToken`, {
           method: "GET",
-          credentials: "include",
+          credentials: "include", // lấy cookie (refreshToken)
       });
       if (!dt.ok) throw new Error("Failed to get accessToken user , Unauthorized - Please login again");
       const dataRefresh = await dt.json();

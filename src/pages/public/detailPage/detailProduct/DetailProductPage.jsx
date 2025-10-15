@@ -45,8 +45,8 @@ const DetailProductPage = ()=>{
     useEffect(()=>{ //hiển thị size theo màu sắc chọn
         if(colorSelect !== ""){
            const optionColor = dataProduct?.options.filter(op => op.color === colorSelect)
-            const sizeByColor = optionColor?.[0]?.sizeQuantity.map(x=>x.size)
-            const imgByColor =  optionColor?.[0]?.images
+           const sizeByColor = optionColor?.[0]?.sizeQuantity.map(x=>x.size)
+           const imgByColor =  optionColor?.[0]?.images
           
             setListImg(imgByColor)
             setCurrentImg(imgByColor[0])
@@ -163,13 +163,13 @@ const DetailProductPage = ()=>{
                                         className = 'w-[60%] h-auto'
                                         time = {5000}
                                         autoPlay = {false}
-                                        slidesPerView = {6}
+                                        // slidesPerView = {6}
                                         spaceBetween={0}
                                         pagination={false}
                                     >
                                     { listImg.map((dataitem,index)=>(
                                             <SwiperSlide key={index}>
-                                                <img onClick={()=>setCurrentImg(dataitem)} className="w-[55px] h-[55px] hover:cursor-pointer" src={dataitem} alt="" />
+                                                <img onClick={()=>setCurrentImg(dataitem)} className="object-cover w-[75px] h-[55px] hover:cursor-pointer" src={dataitem} alt="" />
                                             </SwiperSlide>
                                         ))}
                                 </Slider>

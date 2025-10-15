@@ -17,11 +17,6 @@ const BlogPage = ()=>{
             }
         }
         getBlog()
-        // getApiBlog()
-        // .then((dt)=>{
-        //     setDataNoti(dt.data)
-        //     setIsLoading(false)
-        // })
     },[])
     return (
         <div>

@@ -78,7 +78,7 @@ const HomePage = ()=>{
                                 className = 'w-[80%] h-[416px]'
                                 time = {5000}
                                 autoPlay = {true}
-                                slidesPerView = {4}
+                                // slidesPerView = {4}
                                 spaceBetween={1}
                                 pagination={true}
                             >

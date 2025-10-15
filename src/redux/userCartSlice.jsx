@@ -4,7 +4,7 @@ import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import { getApiUserCurrent,addToCartUserApi,removeToCartUserApi } from "../service/userApiService";
 import { orderCartApi } from "../service/orderApiService";
 
-const userCartSlice = createSlice({
+const userCartSlice = createSlice({   //createSlice :  kết hợp action và reducer trong 1 nơi 
     name :"userCart",
     initialState:{
         products : [],
@@ -121,9 +121,9 @@ const userCartSlice = createSlice({
     }
 
 })
+
+//các hàm action xử lý các thao tác bất đồng bộ (gọi api)
 export const fetchCart = createAsyncThunk("userCart/fetchCart", async(token,thunkAPI)=>{
-     
-    
      try{
         const dataCurrentUser = await getApiUserCurrent(token)  //Lấy thông tin của user đăng đăng nhập 
         // console.log("fetch dataCurrentUser",dataCurrentUser)

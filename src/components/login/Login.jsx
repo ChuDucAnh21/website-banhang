@@ -8,10 +8,12 @@ import { useDispatch } from "react-redux";
 import guestCartSlice from "../../redux/guestCartSlice"
 import authSlice from "../../redux/authSlice";
 import { fetchCart } from "../../redux/userCartSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
     const [email,setEmail] = useState("")
+    const navigate = useNavigate()
     const [password,setPassWord] = useState("")
     const [validate,setValidate] = useState({})
     const {showToast} = useToast()
@@ -37,7 +39,7 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
                 //lấy thông tin giỏ hàng của user
                 dispatch(fetchCart(dataServer.data.accessToken))
                 showToast("Đăng nhập thành công");
-
+                navigate("/")
                 setShowLogin(false);
                 
             } catch (err) {
