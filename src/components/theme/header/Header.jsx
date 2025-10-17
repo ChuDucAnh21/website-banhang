@@ -130,7 +130,7 @@ const Header = ({setShowLogin,setShowRegister})=>{
     
     
     return(
-       <div className='header-page z-10 pt-1 pb-2 bg-white sticky top-0 left-0 w-full'>
+       <div className='header-page bg-white z-10 pt-1 pb-2  sticky top-0 left-0 w-full'>
 
            {/* nav MOBILE */}
            <div className={'containerNavbar  z-20 ' + `${ shownav ? "shownav" : ""}`} onClick={handelToggeNavbar}  >

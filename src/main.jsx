@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 createRoot(document.getElementById('root')).render(
   <>
   <ToastProvider>
-     <Provider store={store}>
+     <Provider store={store}>  
        <PersistGate persistor={persistor} > 
          <RouterProvider router={router}/>
        </PersistGate>
