@@ -163,7 +163,7 @@ const DetailProductPage = ()=>{
                                         className = 'w-[60%] h-auto'
                                         time = {5000}
                                         autoPlay = {false}
-                                        // slidesPerView = {6}
+                                        slidesPerView = {6}
                                         spaceBetween={0}
                                         pagination={false}
                                     >

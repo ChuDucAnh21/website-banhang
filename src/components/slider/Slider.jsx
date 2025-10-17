@@ -25,7 +25,7 @@ const Slider = (prop) => {
             // 👇 Thay đổi số lượng hiển thị theo kích thước màn hình
             breakpoints={{
                 320: {  // màn hình nhỏ (mobile)
-                    slidesPerView: 1,
+                    slidesPerView:prop.slidesPerView || 1,
                     spaceBetween: 10
                 },
                 640: {  // tablet nhỏ
