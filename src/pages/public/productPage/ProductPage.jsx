@@ -48,7 +48,7 @@ const CategoryProductPage = ({category})=>{
             } 
             setData(dataByFilter)
         } catch (error) {
-            console.error("Fetch error:", err);
+            console.error("Fetch error:", error);
         }
         setLoading(false)          
     }

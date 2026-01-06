@@ -27,7 +27,7 @@ export const loginApiUser= async(value)=>{
                 "loginValue":value.email,
                 "password": value.password,
             }),
-           credentials: "include"
+           credentials: "include" 
        })
        return data
   
@@ -103,7 +103,7 @@ export const removeToCartUserApi = async(value,token)=>{
              "Content-Type": "application/json",
              "Authorization": `Bearer ${token}`  //truyền token người dùng vào để gửi lên serve
         },
-        // credentials: "include",
+        // credentials: "include", 
         body: JSON.stringify({
                 "pid":value.id,
                 "color": value.color,

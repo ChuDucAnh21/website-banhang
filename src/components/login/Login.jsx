@@ -5,7 +5,6 @@ import { useState } from "react";
 import { validateForm } from "./validateForm";
 import { useToast } from "../../components/toastMessage/ToastMessage";
 import { useDispatch } from "react-redux";
-import guestCartSlice from "../../redux/guestCartSlice"
 import authSlice from "../../redux/authSlice";
 import { fetchCart } from "../../redux/userCartSlice";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +35,7 @@ const LoginModel = ({setShowLogin,showLogin,setShowRegister})=>{
                         role: dataServer.data.user.role,
                     })
                 );
-                //lấy thông tin giỏ hàng của user
+                //lấy thông tin giỏ hàng của user rồi lưu vào store
                 dispatch(fetchCart(dataServer.data.accessToken))
                 showToast("Đăng nhập thành công");
                 navigate("/")

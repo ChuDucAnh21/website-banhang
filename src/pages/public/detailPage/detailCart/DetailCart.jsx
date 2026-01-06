@@ -18,9 +18,9 @@ const DetailCart = ()=>{
     const dataUser = useSelector(SelectUser)
     const cartUser = useSelector(SelectUserCart)
 
-    const listProductCart =dataUser.role === "admin" || dataUser.role==="user" ?useSelector(SelectUserCart) : useSelector(SelectGuestCart)
+    const listProductCart = dataUser.role === "admin" || dataUser.role==="user" ? useSelector  (SelectUserCart) : useSelector(SelectGuestCart)
     const handelQuatity = async (e,data)=>{
-         e.stopPropagation()
+        e.stopPropagation()
         e.preventDefault()
         try {
             if(dataUser.role === "admin" || dataUser.role==="user"){

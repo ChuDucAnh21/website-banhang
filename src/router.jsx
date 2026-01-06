@@ -37,5 +37,25 @@ export const router = createBrowserRouter([
             {path:ROUTER.ADMIN.CREATEBLOG, element:<CreateBlog/>},
             {path:ROUTER.ADMIN.BLOGMANAGER, element:<BlogManage/>},
         ]
-    }
+    },
+
+    // DƯỚI LÀ VÍ DỤ KHI CÓ NHIỀU LAYOUT CHO CÁC NHÓM ROUTE KHÁC NHAU
+
+    // Nhóm dùng AppLayout
+  /*{
+    element: <AppLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/upload", element: <UploadPage /> },
+    ],
+  },
+
+  // Nhóm dùng AuthLayout
+  {
+    element: <AuthLayout />,
+    children: [
+      { path: "/login", element: <LoginPage /> },
+      { path: "/register", element: <RegisterPage /> },
+    ],
+  },*/
 ])
