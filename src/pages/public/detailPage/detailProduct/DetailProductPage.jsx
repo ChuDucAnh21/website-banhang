@@ -169,7 +169,7 @@ const DetailProductPage = ()=>{
                                     >
                                     { listImg.map((dataitem,index)=>(
                                             <SwiperSlide key={index}>
-                                                <img onClick={()=>setCurrentImg(dataitem)} className="object-cover w-[75px] h-[55px] hover:cursor-pointer" src={dataitem} alt="" />
+                                                <img onClick={()=>setCurrentImg(dataitem)} className="object-cover w-[905px] h-[55px] hover:cursor-pointer" src={dataitem} alt="" />
                                             </SwiperSlide>
                                         ))}
                                 </Slider>

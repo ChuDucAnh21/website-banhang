@@ -1,6 +1,4 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
-// import { SelectUser } from "./selector";
-// import { useSelector ,useDispatch } from "react-redux";
 import { getApiUserCurrent,addToCartUserApi,removeToCartUserApi } from "../service/userApiService";
 import { orderCartApi } from "../service/orderApiService";
 
@@ -146,7 +144,7 @@ export const fetchCart = createAsyncThunk("userCart/fetchCart", async(token,thun
      }
 })
 
-export const addCartUser = createAsyncThunk("userCart/addCartUser",async({value,token},thunkAPI)=>{
+export const addCartUser = createAsyncThunk("userCart/addCartUser",async({value,token})=>{
    
     try{
         const dataCurrentUser = await addToCartUserApi(value,token)  // khi thêm thành công trả về toàn bộ infor user (bao gồm giỏ hàng)
@@ -170,7 +168,7 @@ export const addCartUser = createAsyncThunk("userCart/addCartUser",async({value,
 
 })
 
-export const removeCartUser = createAsyncThunk("userCart/removeCartUser",async({value,token},thunkAPI)=>{
+export const removeCartUser = createAsyncThunk("userCart/removeCartUser",async({value,token})=>{
       try{
           const dataRespone = await removeToCartUserApi(value,token)
           return value
@@ -181,7 +179,7 @@ export const removeCartUser = createAsyncThunk("userCart/removeCartUser",async({
       }
 })
 
-export const orderCartUser = createAsyncThunk("userCart/orderCartUser",async({value,token},thunkAPI)=>{
+export const orderCartUser = createAsyncThunk("userCart/orderCartUser",async({value,token})=>{
     try {
         const dataOrder = await orderCartApi(value,token)
         return dataOrder

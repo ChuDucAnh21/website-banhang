@@ -57,7 +57,7 @@ const guestCartSlice = createSlice({
                     return init + product.price* product.quantity
             },0)
         },
-        clearCart:(state,action)=>{
+        clearCart:(state)=>{
             state.products = [],
             state.total = 0
         },
